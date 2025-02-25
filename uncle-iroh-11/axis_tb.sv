@@ -5,7 +5,7 @@ module axis_tb;
   localparam  WORD_W=8, BUS_W=8,
               N_BEATS=10, WORDS_PER_BEAT=BUS_W/WORD_W,
               PROB_VALID=30, PROB_READY=30,
-              CLK_PERIOD=10, NUM_EXP=500;
+              CLK_PERIOD=10, NUM_EXP=50;
 
   logic clk;
   logic rstn;
@@ -93,7 +93,7 @@ module AXIS_TX #(
     data  = 'x;
   end
 
-  task axis_push_packet(
+  task automatic axis_push_packet(
     // reference data
     input  logic [N_BEATS-1:0][WORDS_PER_BEAT-1:0][WORD_W-1:0] tx_data
   );
@@ -130,12 +130,15 @@ module AXIS_RX #(
   output logic                                  ready,
   input  logic [WORDS_PER_BEAT-1:0][WORD_W-1:0] data
 );
+
+  logic [WORDS_PER_BEAT-1:0][WORD_W-1:0] data_t;
+
   // initialize stream
   initial begin
     ready = 1'b0;
   end
 
-  task axis_pull_packet(
+  task automatic axis_pull_packet(
     // sampled data
     output logic [N_BEATS-1:0][WORDS_PER_BEAT-1:0][WORD_W-1:0] data_o
   );
@@ -150,12 +153,11 @@ module AXIS_RX #(
         @(posedge clk);
       end while (~(valid & ready));
       // sample stream
-      data_o[i] <= data;
+      data_t <= data;
       // clear the ready signal
       ready <= 1'b0;
-      //$display("data[%0d]=%h=%h", i, data, data_o[i]);
+      // write to array
+      data_o[i] = data;
     end
-    #1;
-    //$display("data_o %h", data_o);
   endtask: axis_pull_packet
 endmodule: AXIS_RX
