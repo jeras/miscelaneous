@@ -1,0 +1,1 @@
+qrun -makelib work -sv verilator_localparam_in_struct_init.sv -end -top verilator_localparam_in_struct_init

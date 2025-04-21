@@ -1,0 +1,2 @@
+verilator --binary --top verilator_localparam_in_struct_init verilator_localparam_in_struct_init.sv
+obj_dir/Vverilator_localparam_in_struct_init
