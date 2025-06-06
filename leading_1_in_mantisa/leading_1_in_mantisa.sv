@@ -21,7 +21,7 @@ module leading_1_in_mantisa #(
                 suffix[i-1] = Sum_mag[i-1] | suffix[i];
             end
             // conversion from thermometer to one-hot
-            assign onehot = suffix & ~{1'b0, suffix[WIDTH-1:1]};
+            onehot = suffix & ~{1'b0, suffix[WIDTH-1:1]};
             // conversion from onehot to binary
             msb_pos = '0;
             for (int unsigned i=0; i<WIDTH; i++) begin
@@ -31,6 +31,27 @@ module leading_1_in_mantisa #(
 
     end: naive
     else begin: fpga
+
+        logic [WIDTH-1:0] Sum_mag_rev;
+        logic [WIDTH-1:0] Sum_mag_rev_neg_inc;
+        logic [WIDTH-1:0] onehot_rev;
+        logic [WIDTH-1:0] onehot;
+
+        always_comb
+        begin
+            // bit reverse
+            Sum_mag_rev = {<<{Sum_mag}};
+            // parallel suffix
+            Sum_mag_rev_neg_inc = (~Sum_mag_rev)+1;
+            onehot_rev = Sum_mag_rev & Sum_mag_rev_neg_inc;
+            // conversion from thermometer to one-hot
+            onehot = {<<{onehot_rev}};
+            // conversion from onehot to binary
+            msb_pos = '0;
+            for (int unsigned i=0; i<WIDTH; i++) begin
+                msb_pos |= onehot[i] ? i[WIDTH_LOG-1:0] : WIDTH_LOG'('0);
+            end
+        end
 
     end: fpga
     endgenerate

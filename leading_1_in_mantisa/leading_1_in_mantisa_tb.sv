@@ -1,7 +1,8 @@
 module leading_1_in_mantisa_tb #(
-    parameter  int unsigned WIDTH = 24,
+    parameter  int unsigned WIDTH = 8,
     localparam int unsigned WIDTH_LOG = $clog2(WIDTH),
-    parameter string IMPLEMENTATION = "NAIVE" // the other option is "FPGA"
+//    parameter string IMPLEMENTATION = "NAIVE"
+    parameter string IMPLEMENTATION = "FPGA"
 );
 
     // timing constant
@@ -77,7 +78,7 @@ module leading_1_in_mantisa_tb #(
             Sum_mag <= tmp;
             check;
         end
-        $finish;
+//        $finish;
 
         // priority encoder test (going through all input combinations)
         test_name = "exhaustive";
@@ -95,7 +96,7 @@ module leading_1_in_mantisa_tb #(
     // DUT RTL instance
     leading_1_in_mantisa #(
         .WIDTH (WIDTH),
-        .IMPLEMENTATION ("NAIVE")
+        .IMPLEMENTATION (IMPLEMENTATION)
     ) dut (
         .Sum_mag (Sum_mag),
         .msb_pos (msb_pos)
