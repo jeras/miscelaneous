@@ -34,6 +34,7 @@ architecture rtl of rams_init_file is
             readline(RamFile, RamFileLine);
             read(RamFileLine, ram(i));
         end loop;
+        deallocate(RamFileLine);
         return ram;
         file_close(RamFile);
     end function;
@@ -47,6 +48,7 @@ architecture rtl of rams_init_file is
             write(RamFileLine, ram(i));
             writeline(RamFile, RamFileLine);
         end loop;
+        deallocate(RamFileLine);
         file_close(RamFile);
     end procedure DumpRamToFile;
 
