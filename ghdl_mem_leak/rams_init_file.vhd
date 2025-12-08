@@ -1,4 +1,4 @@
--- Initializing Block RAM from external data file
+-- Initializing Block ram from external data file
 -- File: rams_init_file.vhd
 
 library ieee;
@@ -7,53 +7,72 @@ use ieee.numeric_std.all;
 use std.textio.all;
 
 entity rams_init_file is
+    generic (
+        AW : positive := 6;
+        DW : positive := 32
+    );
     port(
         clk  : in  std_logic;
+        ce   : in  std_logic;
         we   : in  std_logic;
-        addr : in  std_logic_vector(5 downto 0);
-        din  : in  std_logic_vector(31 downto 0);
-        dout : out std_logic_vector(31 downto 0)
+        addr : in  std_logic_vector(AW-1 downto 0);
+        din  : in  std_logic_vector(DW-1 downto 0);
+        dout : out std_logic_vector(DW-1 downto 0)
     );
 end rams_init_file;
 
-architecture syn of rams_init_file is
-    type RamType is array (0 to 63) of bit_vector(31 downto 0);
+architecture rtl of rams_init_file is
+    type RamType is array (natural range <>) of bit_vector(DW-1 downto 0);
 
     impure function InitRamFromFile(RamFileName : in string) return RamType is
-        FILE RamFile : text is in RamFileName;
+        FILE RamFile : text;
         variable RamFileLine : line;
-        variable RAM : RamType;
-        begin
-            for I in RamType'range loop
-                readline(RamFile, RamFileLine);
-                read(RamFileLine, RAM(I));
-            end loop;
-        return RAM;
+        variable ram : RamType(0 to 2**AW-1);
+    begin
+        file_open(RamFile, RamFileName, READ_MODE);
+        for i in ram'range loop
+            readline(RamFile, RamFileLine);
+            read(RamFileLine, ram(i));
+        end loop;
+        return ram;
+        file_close(RamFile);
     end function;
 
-    impure function DumpRamToFile(RamFileName : in string) return RamType is
-        FILE RamFile : text is in RamFileName;
+    procedure DumpRamToFile(RamFileName : in string; ram : RamType) is
+        FILE RamFile : text;
         variable RamFileLine : line;
-        variable RAM : RamType;
-        begin
-            for I in RamType'range loop
-                write(RamFileLine, RAM(I));
-                writeline(RamFile, RamFileLine);
-            end loop;
-        return RAM;
-    end function;
+    begin
+        file_open(RamFile, RamFileName, WRITE_MODE);
+        for i in ram'range loop
+            write(RamFileLine, ram(i));
+            writeline(RamFile, RamFileLine);
+        end loop;
+        file_close(RamFile);
+    end procedure DumpRamToFile;
 
-    signal RAM : RamType := InitRamFromFile("rams_init_file.data");
+--    signal ram : RamType(0 to 2**AW-1) := InitRamFromFile("rams_init_file.data");
+    signal ram : RamType(0 to 2**AW-1) := InitRamFromFile("missing.data");
 begin
 
-    process(clk)
+    dump : process
+    begin
+        -- delta cycle avoids race condition with initialization
+        wait for 0 ns;
+        DumpRamToFile("rams_dump_file.data", ram);
+        wait;
+    end process dump;
+
+    rw: process(clk)
     begin
         if clk'event and clk = '1' then
-            if we = '1' then
-                RAM(to_integer(unsigned(addr))) <= to_bitvector(din);
+            if ce = '1' then
+                if we = '1' then
+                    ram(to_integer(unsigned(addr))) <= to_bitvector(din);
+                else
+                    dout <= to_stdlogicvector(ram(to_integer(unsigned(addr))));
+                end if;
             end if;
-            dout <= to_stdlogicvector(RAM(to_integer(unsigned(addr))));
         end if;
-    end process;
+    end process rw;
 
-end syn;
+end rtl;
