@@ -1,90 +1,74 @@
--- Initializing Block RAM from external data file
--- File: rams_init_file.vhd
+library std;
+use std.textio.all;
+use std.env.all;
 
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use std.textio.all;
-use std.env.finish;
 
 entity rams_init_file_tb is
-    generic (
-        AW : positive := 6;
-        DW : positive := 32
-    );
 end rams_init_file_tb;
 
-architecture behav of rams_init_file_tb is
-    signal clk  : std_logic := '1';
-    signal ce   : std_logic := '0';
-    signal we   : std_logic;
-    signal addr : std_logic_vector(AW-1 downto 0);
-    signal din  : std_logic_vector(DW-1 downto 0);
-    signal dout : std_logic_vector(DW-1 downto 0);
+architecture sim of rams_init_file_tb is
+
+  type array_bv8_t is array (natural range <>) of bit_vector(8-1 downto 0);
+
+  -- memory configuration --
+  constant mem_size_c : natural := 4*1024*1024; -- bytes
+--
+  -- initialize array_bv8_t array from plain binary file --
+  impure function array_bv8_init_bin_f(
+    file_name : string;
+    size      : natural
+  ) return array_bv8_t is
+    type char_file is file of character;
+    file     init_f : char_file;
+    variable array_v : array_bv8_t(0 to size-1);
+    variable index_v : natural;
+    variable data_v  : character;
+  begin
+    if (file_name /= "") then
+      file_open(init_f, file_name, READ_MODE);
+      index_v := 0;
+      while (endfile(init_f) = false) and (index_v < size) loop
+        read(init_f, data_v);
+        array_v(index_v) := to_bitvector(std_logic_vector(to_unsigned(character'pos(data_v),8)));
+        index_v := index_v + 1;
+      end loop;
+    end if;
+    file_close(init_f);
+    return array_v;
+  end function array_bv8_init_bin_f;
+
+  -- generators --
+  signal clk, rst : std_ulogic := '0';
+
+  signal mem8 : array_bv8_t(0 to mem_size_c-1);
+
 begin
 
-    -- clock
-    clk <= not clk after 5 ns;
+  -- clock/reset
 
-    -- stimuli
-    process
-    begin
-        report "TEST: start";
-        -- idle cycle
-        wait until rising_edge(clk);
-        -- memory read sequence
-        ce   <= '1';
-        we   <= '0';
-        wait until rising_edge(clk);
-        for i in 0 to 2**AW-1 loop
-            addr <= std_logic_vector(to_unsigned(i, AW));
-            wait until rising_edge(clk);
-        end loop;
-        we   <= 'U';
-        -- idle cycle
-        ce   <= '0';
-        wait until rising_edge(clk);
-        -- memory write sequence
-        ce   <= '1';
-        we   <= '1';
-        for i in 0 to 2**AW-1 loop
-            addr <= std_logic_vector(to_unsigned(i, AW));
-            din  <= std_logic_vector(to_unsigned(i, DW));
-            wait until rising_edge(clk);
-        end loop;
-        we   <= 'U';
-        din  <= (others => 'U');
-        -- idle cycle
-        ce   <= '0';
-        wait until rising_edge(clk);
-        -- memory read sequence
-        ce   <= '1';
-        we   <= '0';
-        wait until rising_edge(clk);
-        for i in 0 to 2**AW-1 loop
-            addr <= std_logic_vector(to_unsigned(i, AW));
-            wait until rising_edge(clk);
-        end loop;
-        we   <= 'U';
-        -- idle cycle
-        ce   <= '0';
-        wait until rising_edge(clk);
-        report "TEST: end";
-        finish;
-    end process;
+  clk <= not clk after 5 ns;
+  
+  process
+  begin
+    rst <= '1';
+    for i in 0 to 10-1 loop
+      wait until rising_edge(clk);
+    end loop;
+    -- synchronous reset release
+    rst <= '0';
+    wait;
+  end process;
 
-    ram : entity work.rams_init_file(rtl)
-    generic map (
-        AW => AW,
-        DW => DW
-    )
-    port map (
-        clk  => clk ,
-        ce   => ce  ,
-        we   => we  ,
-        addr => addr,
-        din  => din ,
-        dout => dout
-    );
+  -- memory
 
-end behav;
+  main: process
+  begin
+    -- memory initialization
+    mem8 <= array_bv8_init_bin_f("main.bin", mem_size_c);
+    wait;
+  end process main;
+
+end sim;
