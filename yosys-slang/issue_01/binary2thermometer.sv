@@ -2,18 +2,23 @@ module binary2thermometer #(
     parameter int unsigned WIDTH = 4,
     parameter string       IMPLEMENTATION = "POWER"  // supported "POWER"/"SHIFT"
 )(
+    input  logic                       clk,
     input  logic [$clog2(WIDTH+1)-1:0] binary,
-    output logic [       WIDTH   -1:0] thermometer
+    input  logic [       WIDTH   -1:0] data_i,
+    output logic [       WIDTH   -1:0] data_o
+//    output logic [       WIDTH   -1:0] thermometer
 );
 
     generate
     for (genvar i=0; i<WIDTH; i++) begin
         case (IMPLEMENTATION)
             "POWER": begin
-                assign thermometer[i] = (i < (2**binary)) ? 1'b1 : 1'b0;
+                always @(posedge clk)
+                if (i < (2**binary))  data_o[i] <= data_i[i];
             end
 	    "SHIFT": begin
-                assign thermometer[i] = (i < (1<<binary)) ? 1'b1 : 1'b0;
+                always @(posedge clk)
+                if (i < (1<<binary))  data_o[i] <= data_i[i];
             end
         endcase
     end
