@@ -1,0 +1,1274 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.61+112 (git sha1 ac427a79b, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)
+
+-- Running command `read_slang binary2thermometer.sv --top binary2thermometer -G IMPLEMENTATION="SHIFT";      proc; opt -full;      write_json binary2thermometer_SHIFT.json;      write_verilog binary2thermometer_SHIFT.verilog;      synth_gowin -json binary2thermometer_SHIFT.gowin.json;      show -format dot -prefix binary2thermometer_SHIFT binary2thermometer' --
+
+1. Executing SLANG frontend.
+
+1.1. Executing UNDRIVEN pass. (resolve undriven signals)
+
+1.2. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+1.3. Executing TRIBUF pass.
+
+1.4. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+1.5. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+1.6. Executing PROC_INIT pass (extract init attributes).
+
+1.7. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+1.8. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+1.9. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+1.10. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+2. Executing PROC pass (convert processes to netlists).
+
+2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+2.4. Executing PROC_INIT pass (extract init attributes).
+
+2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+3. Executing OPT pass (performing simple optimizations).
+
+3.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+<suppressed ~4 debug messages>
+
+3.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 8 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Computing hashes of 5 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+3.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \binary2thermometer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+3.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \binary2thermometer.
+Performed a total of 0 changes.
+
+3.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 5 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Removed a total of 0 cells.
+
+3.6. Executing OPT_SHARE pass.
+
+3.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+Removed 0 unused cells and 11 unused wires.
+<suppressed ~1 debug messages>
+
+3.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+3.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \binary2thermometer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+3.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \binary2thermometer.
+Performed a total of 0 changes.
+
+3.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 5 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Removed a total of 0 cells.
+
+3.14. Executing OPT_SHARE pass.
+
+3.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+
+3.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+3.18. Finished fast OPT passes. (There is nothing left to do.)
+
+4. Executing JSON backend.
+
+5. Executing Verilog backend.
+
+5.1. Executing BMUXMAP pass.
+
+5.2. Executing DEMUXMAP pass.
+Dumping module `\binary2thermometer'.
+
+6. Executing SYNTH_GOWIN pass.
+
+6.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/gowin/cells_sim.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/gowin/cells_sim.v' to AST representation.
+Generating RTLIL representation for module `\LUT1'.
+Generating RTLIL representation for module `\LUT2'.
+Generating RTLIL representation for module `\LUT3'.
+Generating RTLIL representation for module `\LUT4'.
+Generating RTLIL representation for module `\__APICULA_LUT5'.
+Generating RTLIL representation for module `\__APICULA_LUT6'.
+Generating RTLIL representation for module `\__APICULA_LUT7'.
+Generating RTLIL representation for module `\__APICULA_LUT8'.
+Generating RTLIL representation for module `\MUX2'.
+Generating RTLIL representation for module `\MUX2_LUT5'.
+Generating RTLIL representation for module `\MUX2_LUT6'.
+Generating RTLIL representation for module `\MUX2_LUT7'.
+Generating RTLIL representation for module `\MUX2_LUT8'.
+Generating RTLIL representation for module `\DFF'.
+Generating RTLIL representation for module `\DFFE'.
+Generating RTLIL representation for module `\DFFS'.
+Generating RTLIL representation for module `\DFFSE'.
+Generating RTLIL representation for module `\DFFR'.
+Generating RTLIL representation for module `\DFFRE'.
+Generating RTLIL representation for module `\DFFP'.
+Generating RTLIL representation for module `\DFFPE'.
+Generating RTLIL representation for module `\DFFC'.
+Generating RTLIL representation for module `\DFFCE'.
+Generating RTLIL representation for module `\DFFN'.
+Generating RTLIL representation for module `\DFFNE'.
+Generating RTLIL representation for module `\DFFNS'.
+Generating RTLIL representation for module `\DFFNSE'.
+Generating RTLIL representation for module `\DFFNR'.
+Generating RTLIL representation for module `\DFFNRE'.
+Generating RTLIL representation for module `\DFFNP'.
+Generating RTLIL representation for module `\DFFNPE'.
+Generating RTLIL representation for module `\DFFNC'.
+Generating RTLIL representation for module `\DFFNCE'.
+Generating RTLIL representation for module `\VCC'.
+Generating RTLIL representation for module `\GND'.
+Generating RTLIL representation for module `\IBUF'.
+Generating RTLIL representation for module `\OBUF'.
+Generating RTLIL representation for module `\TBUF'.
+Generating RTLIL representation for module `\IOBUF'.
+Generating RTLIL representation for module `\ELVDS_OBUF'.
+Generating RTLIL representation for module `\TLVDS_OBUF'.
+Generating RTLIL representation for module `\OSER4'.
+Generating RTLIL representation for module `\OSER4_MEM'.
+Generating RTLIL representation for module `\OSER8'.
+Generating RTLIL representation for module `\OSER10'.
+Generating RTLIL representation for module `\OVIDEO'.
+Generating RTLIL representation for module `\OSER16'.
+Generating RTLIL representation for module `\IDES4'.
+Generating RTLIL representation for module `\IDES4_MEM'.
+Generating RTLIL representation for module `\IDES8'.
+Generating RTLIL representation for module `\IDES10'.
+Generating RTLIL representation for module `\IVIDEO'.
+Generating RTLIL representation for module `\IDES16'.
+Generating RTLIL representation for module `\IDDR'.
+Generating RTLIL representation for module `\IDDRC'.
+Generating RTLIL representation for module `\DQS'.
+Generating RTLIL representation for module `\ODDR'.
+Generating RTLIL representation for module `\ODDRC'.
+Generating RTLIL representation for module `\GSR'.
+Generating RTLIL representation for module `\BANDGAP'.
+Generating RTLIL representation for module `\ALU'.
+Generating RTLIL representation for module `\RAM16S1'.
+Generating RTLIL representation for module `\RAM16S2'.
+Generating RTLIL representation for module `\RAM16S4'.
+Generating RTLIL representation for module `\RAM16SDP1'.
+Generating RTLIL representation for module `\RAM16SDP2'.
+Generating RTLIL representation for module `\RAM16SDP4'.
+Generating RTLIL representation for module `\SP'.
+Generating RTLIL representation for module `\SPX9'.
+Generating RTLIL representation for module `\SDP'.
+Generating RTLIL representation for module `\SDPX9'.
+Generating RTLIL representation for module `\DP'.
+Generating RTLIL representation for module `\DPX9'.
+Generating RTLIL representation for module `\rPLL'.
+Generating RTLIL representation for module `\PLLVR'.
+Generating RTLIL representation for module `\OSC'.
+Generating RTLIL representation for module `\OSCZ'.
+Generating RTLIL representation for module `\OSCF'.
+Generating RTLIL representation for module `\OSCH'.
+Generating RTLIL representation for module `\OSCW'.
+Generating RTLIL representation for module `\OSCO'.
+Generating RTLIL representation for module `\EMCU'.
+Successfully finished Verilog frontend.
+
+6.2. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/gowin/cells_xtra_gw1n.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/gowin/cells_xtra_gw1n.v' to AST representation.
+Generating RTLIL representation for module `\LUT5'.
+Generating RTLIL representation for module `\LUT6'.
+Generating RTLIL representation for module `\LUT7'.
+Generating RTLIL representation for module `\LUT8'.
+Generating RTLIL representation for module `\INV'.
+Generating RTLIL representation for module `\IODELAY'.
+Generating RTLIL representation for module `\IEM'.
+Generating RTLIL representation for module `\ROM16'.
+Generating RTLIL representation for module `\ROM'.
+Generating RTLIL representation for module `\ROMX9'.
+Generating RTLIL representation for module `\pROM'.
+Generating RTLIL representation for module `\pROMX9'.
+Generating RTLIL representation for module `\SDPB'.
+Generating RTLIL representation for module `\SDPX9B'.
+Generating RTLIL representation for module `\DPB'.
+Generating RTLIL representation for module `\DPX9B'.
+Generating RTLIL representation for module `\PADD18'.
+Generating RTLIL representation for module `\PADD9'.
+Generating RTLIL representation for module `\MULT9X9'.
+Generating RTLIL representation for module `\MULT18X18'.
+Generating RTLIL representation for module `\MULT36X36'.
+Generating RTLIL representation for module `\MULTALU36X18'.
+Generating RTLIL representation for module `\MULTADDALU18X18'.
+Generating RTLIL representation for module `\MULTALU18X18'.
+Generating RTLIL representation for module `\ALU54D'.
+Generating RTLIL representation for module `\BUFG'.
+Generating RTLIL representation for module `\BUFS'.
+Generating RTLIL representation for module `\PLL'.
+Generating RTLIL representation for module `\TLVDS_IBUF'.
+Generating RTLIL representation for module `\TLVDS_TBUF'.
+Generating RTLIL representation for module `\TLVDS_IOBUF'.
+Generating RTLIL representation for module `\ELVDS_IBUF'.
+Generating RTLIL representation for module `\ELVDS_TBUF'.
+Generating RTLIL representation for module `\ELVDS_IOBUF'.
+Generating RTLIL representation for module `\MIPI_IBUF'.
+Generating RTLIL representation for module `\MIPI_IBUF_HS'.
+Generating RTLIL representation for module `\MIPI_IBUF_LP'.
+Generating RTLIL representation for module `\MIPI_OBUF'.
+Generating RTLIL representation for module `\MIPI_OBUF_A'.
+Generating RTLIL representation for module `\ELVDS_IBUF_MIPI'.
+Generating RTLIL representation for module `\I3C_IOBUF'.
+Generating RTLIL representation for module `\CLKDIV'.
+Generating RTLIL representation for module `\DHCEN'.
+Generating RTLIL representation for module `\DLLDLY'.
+Generating RTLIL representation for module `\FLASH96K'.
+Generating RTLIL representation for module `\FLASH256K'.
+Generating RTLIL representation for module `\FLASH608K'.
+Generating RTLIL representation for module `\DCS'.
+Generating RTLIL representation for module `\DQCE'.
+Generating RTLIL representation for module `\CLKDIV2'.
+Generating RTLIL representation for module `\DHCENC'.
+Generating RTLIL representation for module `\FLASH64K'.
+Generating RTLIL representation for module `\FLASH64KZ'.
+Successfully finished Verilog frontend.
+
+6.3. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `binary2thermometer'. Setting top module to binary2thermometer.
+
+6.3.1. Analyzing design hierarchy..
+Top module:  \binary2thermometer
+
+6.3.2. Analyzing design hierarchy..
+Top module:  \binary2thermometer
+Removed 0 unused modules.
+
+6.4. Executing PROC pass (convert processes to netlists).
+
+6.4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+6.4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+6.4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+6.4.4. Executing PROC_INIT pass (extract init attributes).
+
+6.4.5. Executing PROC_ARST pass (detect async resets in processes).
+
+6.4.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+6.4.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+6.4.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+6.4.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+6.4.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+6.4.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+6.4.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+6.5. Executing FLATTEN pass (flatten design).
+
+6.6. Executing TRIBUF pass.
+
+6.7. Executing DEMINOUT pass (demote inout ports to input or output).
+
+6.8. Executing SYNTH pass.
+
+6.8.1. Executing PROC pass (convert processes to netlists).
+
+6.8.1.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+6.8.1.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+6.8.1.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+6.8.1.4. Executing PROC_INIT pass (extract init attributes).
+
+6.8.1.5. Executing PROC_ARST pass (detect async resets in processes).
+
+6.8.1.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+6.8.1.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+6.8.1.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+6.8.1.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+6.8.1.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+6.8.1.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+6.8.1.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+6.8.2. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+6.8.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+
+6.8.4. Executing CHECK pass (checking for obvious problems).
+Checking module binary2thermometer...
+Found and reported 0 problems.
+
+6.8.5. Executing OPT pass (performing simple optimizations).
+
+6.8.5.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+6.8.5.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 5 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Removed a total of 0 cells.
+
+6.8.5.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \binary2thermometer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+6.8.5.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \binary2thermometer.
+Performed a total of 0 changes.
+
+6.8.5.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 5 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Removed a total of 0 cells.
+
+6.8.5.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.8.5.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+
+6.8.5.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+6.8.5.9. Finished fast OPT passes. (There is nothing left to do.)
+
+6.8.6. Executing FSM pass (extract and optimize FSM).
+
+6.8.6.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+6.8.6.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+6.8.6.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+6.8.6.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+
+6.8.6.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+6.8.6.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+6.8.6.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+6.8.6.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+6.8.7. Executing OPT pass (performing simple optimizations).
+
+6.8.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+6.8.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 5 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Removed a total of 0 cells.
+
+6.8.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \binary2thermometer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+6.8.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \binary2thermometer.
+Performed a total of 0 changes.
+
+6.8.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 5 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Removed a total of 0 cells.
+
+6.8.7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.8.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+
+6.8.7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+6.8.7.9. Finished fast OPT passes. (There is nothing left to do.)
+
+6.8.8. Executing WREDUCE pass (reducing word size of cells).
+Removed top 31 bits (of 32) from port A of cell binary2thermometer.$1 ($lt).
+Removed top 30 bits (of 32) from port A of cell binary2thermometer.$4 ($lt).
+Removed top 31 bits (of 32) from port A of cell binary2thermometer.$6 ($shl).
+Removed top 29 bits (of 32) from port A of cell binary2thermometer.$7 ($lt).
+Removed top 29 bits (of 32) from port A of cell binary2thermometer.$10 ($lt).
+
+6.8.9. Executing PEEPOPT pass (run peephole optimizers).
+
+6.8.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+
+6.8.11. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module binary2thermometer:
+  creating $alu model for $1 ($lt): new $alu
+  creating $alu model for $10 ($lt): new $alu
+  creating $alu model for $4 ($lt): new $alu
+  creating $alu model for $7 ($lt): new $alu
+  creating $alu cell for $7: $auto$alumacc.cc:512:replace_alu$343
+  creating $alu cell for $4: $auto$alumacc.cc:512:replace_alu$350
+  creating $alu cell for $10: $auto$alumacc.cc:512:replace_alu$357
+  creating $alu cell for $1: $auto$alumacc.cc:512:replace_alu$364
+  created 4 $alu and 0 $macc cells.
+
+6.8.12. Executing SHARE pass (SAT-based resource sharing).
+
+6.8.13. Executing OPT pass (performing simple optimizations).
+
+6.8.13.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+6.8.13.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 13 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Removed a total of 0 cells.
+
+6.8.13.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \binary2thermometer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+6.8.13.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \binary2thermometer.
+Performed a total of 0 changes.
+
+6.8.13.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 13 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Removed a total of 0 cells.
+
+6.8.13.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.8.13.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+Removed 0 unused cells and 4 unused wires.
+<suppressed ~1 debug messages>
+
+6.8.13.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+6.8.13.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+6.8.13.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \binary2thermometer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+6.8.13.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \binary2thermometer.
+Performed a total of 0 changes.
+
+6.8.13.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 13 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Removed a total of 0 cells.
+
+6.8.13.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.8.13.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+
+6.8.13.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+6.8.13.16. Finished fast OPT passes. (There is nothing left to do.)
+
+6.8.14. Executing MEMORY pass.
+
+6.8.14.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+6.8.14.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+6.8.14.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+6.8.14.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+6.8.14.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+6.8.14.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+
+6.8.14.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+6.8.14.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+6.8.14.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+
+6.8.14.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+6.8.15. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+
+6.9. Executing MEMORY_LIBMAP pass (mapping memories to cells).
+Warning: define gw1n not used in the library.
+
+6.10. Executing TECHMAP pass (map to technology primitives).
+
+6.10.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/gowin/lutrams_map.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/gowin/lutrams_map.v' to AST representation.
+Generating RTLIL representation for module `$__GOWIN_LUTRAM_'.
+Successfully finished Verilog frontend.
+
+6.10.2. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/gowin/brams_map.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/gowin/brams_map.v' to AST representation.
+Generating RTLIL representation for module `$__GOWIN_SP_'.
+Generating RTLIL representation for module `$__GOWIN_DP_'.
+Generating RTLIL representation for module `$__GOWIN_SDP_'.
+Successfully finished Verilog frontend.
+
+6.10.3. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~6 debug messages>
+
+6.11. Executing OPT pass (performing simple optimizations).
+
+6.11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+<suppressed ~2 debug messages>
+
+6.11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 16 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Computing hashes of 15 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+6.11.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.11.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+Removed 2 unused cells and 3 unused wires.
+<suppressed ~3 debug messages>
+
+6.11.5. Finished fast OPT passes.
+
+6.12. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+6.13. Executing OPT pass (performing simple optimizations).
+
+6.13.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+6.13.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 13 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Removed a total of 0 cells.
+
+6.13.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \binary2thermometer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+6.13.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \binary2thermometer.
+Performed a total of 0 changes.
+
+6.13.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 13 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Removed a total of 0 cells.
+
+6.13.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.13.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+
+6.13.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+6.13.9. Finished fast OPT passes. (There is nothing left to do.)
+
+6.14. Executing TECHMAP pass (map to technology primitives).
+
+6.14.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+6.14.2. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/gowin/arith_map.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/gowin/arith_map.v' to AST representation.
+Generating RTLIL representation for module `\_80_gw1n_alu'.
+Successfully finished Verilog frontend.
+
+6.14.3. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod$constmap:14d3d7093c5578ce85694badba9bf5b18c4b0847$paramod$a76515e22df66fbf937fc79de039ef39eb2ac0ac\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shl.
+Using template $paramod$7b00947614a4c48e09c066dca449366ddfa907a5\_80_gw1n_alu for cells of type $alu.
+Using template $paramod$ea1a2c42d25695392cd8ecab35daf131163c81ce\_80_gw1n_alu for cells of type $alu.
+Using template $paramod$06a9a25e193457b564e50ab7b7ad40e176246e9c\_80_gw1n_alu for cells of type $alu.
+Using template $paramod$19e2580c9084a01134cf124dfa77fb4500b707f9\_80_gw1n_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $pos.
+No more expansions possible.
+<suppressed ~608 debug messages>
+
+6.15. Executing OPT pass (performing simple optimizations).
+
+6.15.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+<suppressed ~376 debug messages>
+
+6.15.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 175 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Computing hashes of 154 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+<suppressed ~63 debug messages>
+Removed a total of 21 cells.
+
+6.15.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.15.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+Removed 8 unused cells and 220 unused wires.
+<suppressed ~9 debug messages>
+
+6.15.5. Finished fast OPT passes.
+
+6.16. Executing IOPADMAP pass (mapping inputs/outputs to IO-PAD cells).
+Mapping port binary2thermometer.binary using IBUF.
+Mapping port binary2thermometer.clk using IBUF.
+Mapping port binary2thermometer.thermometer using OBUF.
+
+6.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+
+6.18. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+
+6.19. Executing TECHMAP pass (map to technology primitives).
+
+6.19.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/gowin/cells_map.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/gowin/cells_map.v' to AST representation.
+Generating RTLIL representation for module `$_DFF_N_'.
+Generating RTLIL representation for module `$_DFF_P_'.
+Generating RTLIL representation for module `$_DFFE_PP_'.
+Generating RTLIL representation for module `$_DFFE_NP_'.
+Generating RTLIL representation for module `$_SDFF_PP0_'.
+Generating RTLIL representation for module `$_SDFF_NP0_'.
+Generating RTLIL representation for module `$_SDFFE_PP0P_'.
+Generating RTLIL representation for module `$_SDFFE_NP0P_'.
+Generating RTLIL representation for module `$_SDFF_PP1_'.
+Generating RTLIL representation for module `$_SDFF_NP1_'.
+Generating RTLIL representation for module `$_SDFFE_PP1P_'.
+Generating RTLIL representation for module `$_SDFFE_NP1P_'.
+Generating RTLIL representation for module `$_DFF_PP1_'.
+Generating RTLIL representation for module `$_DFF_NP1_'.
+Generating RTLIL representation for module `$_DFF_PP0_'.
+Generating RTLIL representation for module `$_DFF_NP0_'.
+Generating RTLIL representation for module `$_DFFE_PP1P_'.
+Generating RTLIL representation for module `$_DFFE_NP1P_'.
+Generating RTLIL representation for module `$_DFFE_PP0P_'.
+Generating RTLIL representation for module `$_DFFE_NP0P_'.
+Generating RTLIL representation for module `$lut'.
+Successfully finished Verilog frontend.
+
+6.19.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~23 debug messages>
+
+6.20. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+6.21. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+
+6.22. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/abc9_model.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/abc9_model.v' to AST representation.
+Generating RTLIL representation for module `$__ABC9_DELAY'.
+Generating RTLIL representation for module `$__ABC9_SCC_BREAKER'.
+Generating RTLIL representation for module `$__DFF_N__$abc9_flop'.
+Generating RTLIL representation for module `$__DFF_P__$abc9_flop'.
+Successfully finished Verilog frontend.
+
+6.23. Executing ABC9 pass.
+
+6.23.1. Executing ABC9_OPS pass (helper functions for ABC9).
+
+6.23.2. Executing ABC9_OPS pass (helper functions for ABC9).
+
+6.23.3. Executing PROC pass (convert processes to netlists).
+
+6.23.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `$paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010.$proc$/usr/local/bin/../share/yosys/gowin/cells_sim.v:969$1452'.
+Cleaned up 1 empty switch.
+
+6.23.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+6.23.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 4 assignments to connections.
+
+6.23.3.4. Executing PROC_INIT pass (extract init attributes).
+
+6.23.3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+6.23.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+6.23.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `$paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010.$proc$/usr/local/bin/../share/yosys/gowin/cells_sim.v:969$1452'.
+
+6.23.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `$paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010.\C' from process `$paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010.$proc$/usr/local/bin/../share/yosys/gowin/cells_sim.v:969$1452'.
+No latch inferred for signal `$paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010.\S' from process `$paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010.$proc$/usr/local/bin/../share/yosys/gowin/cells_sim.v:969$1452'.
+
+6.23.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+6.23.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+6.23.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `$paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010.$proc$/usr/local/bin/../share/yosys/gowin/cells_sim.v:969$1452'.
+Cleaned up 0 empty switches.
+
+6.23.4. Executing SCC pass (detecting logic loops).
+Found 0 SCCs in module binary2thermometer.
+Found 0 SCCs.
+
+6.23.5. Executing ABC9_OPS pass (helper functions for ABC9).
+
+6.23.6. Executing TECHMAP pass (map to technology primitives).
+
+6.23.6.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+6.23.6.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~218 debug messages>
+
+6.23.7. Executing OPT pass (performing simple optimizations).
+
+6.23.7.1. Executing OPT_EXPR pass (perform const folding).
+
+6.23.7.2. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+6.23.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Removed 0 multiplexer ports.
+
+6.23.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+Performed a total of 0 changes.
+
+6.23.7.5. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+6.23.7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.23.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+6.23.7.8. Executing OPT_EXPR pass (perform const folding).
+
+6.23.7.9. Finished fast OPT passes. (There is nothing left to do.)
+
+6.23.8. Executing TECHMAP pass (map to technology primitives).
+
+6.23.8.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/abc9_map.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/abc9_map.v' to AST representation.
+Successfully finished Verilog frontend.
+
+6.23.8.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~2 debug messages>
+
+6.23.9. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/abc9_model.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/abc9_model.v' to AST representation.
+Replacing existing blackbox module `$__ABC9_DELAY' at /usr/local/bin/../share/yosys/abc9_model.v:2.1-7.10.
+Generating RTLIL representation for module `$__ABC9_DELAY'.
+Replacing existing blackbox module `$__ABC9_SCC_BREAKER' at /usr/local/bin/../share/yosys/abc9_model.v:9.1-11.10.
+Generating RTLIL representation for module `$__ABC9_SCC_BREAKER'.
+Replacing existing module `$__DFF_N__$abc9_flop' at /usr/local/bin/../share/yosys/abc9_model.v:14.1-20.10.
+Generating RTLIL representation for module `$__DFF_N__$abc9_flop'.
+Replacing existing module `$__DFF_P__$abc9_flop' at /usr/local/bin/../share/yosys/abc9_model.v:23.1-29.10.
+Generating RTLIL representation for module `$__DFF_P__$abc9_flop'.
+Successfully finished Verilog frontend.
+
+6.23.10. Executing ABC9_OPS pass (helper functions for ABC9).
+<suppressed ~2 debug messages>
+
+6.23.11. Executing ABC9_OPS pass (helper functions for ABC9).
+
+6.23.12. Executing ABC9_OPS pass (helper functions for ABC9).
+<suppressed ~2 debug messages>
+
+6.23.13. Executing TECHMAP pass (map to technology primitives).
+
+6.23.13.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+6.23.13.2. Continuing TECHMAP pass.
+Using template $paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010 for cells of type $paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $not.
+No more expansions possible.
+<suppressed ~225 debug messages>
+
+6.23.14. Executing OPT pass (performing simple optimizations).
+
+6.23.14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+6.23.14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 14 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Removed a total of 0 cells.
+
+6.23.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \binary2thermometer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+6.23.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \binary2thermometer.
+Performed a total of 0 changes.
+
+6.23.14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 14 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Removed a total of 0 cells.
+
+6.23.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.23.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+Removed 0 unused cells and 16 unused wires.
+<suppressed ~1 debug messages>
+
+6.23.14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+6.23.14.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+6.23.14.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \binary2thermometer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+6.23.14.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \binary2thermometer.
+Performed a total of 0 changes.
+
+6.23.14.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\binary2thermometer'.
+Computing hashes of 14 cells of `\binary2thermometer'.
+Finding duplicate cells in `\binary2thermometer'.
+Removed a total of 0 cells.
+
+6.23.14.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.23.14.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \binary2thermometer..
+
+6.23.14.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module binary2thermometer.
+
+6.23.14.16. Finished fast OPT passes. (There is nothing left to do.)
+
+6.23.15. Executing AIGMAP pass (map logic to AIG).
+Module binary2thermometer: replaced 5 cells with 35 new cells, skipped 9 cells.
+  replaced 2 cell types:
+       2 $_MUX_
+       3 $_XOR_
+  not replaced 2 cell types:
+       1 $_NOT_
+       8 $specify2
+
+6.23.16. Executing AIGMAP pass (map logic to AIG).
+Module binary2thermometer: replaced 20 cells with 140 new cells, skipped 134 cells.
+  replaced 2 cell types:
+      12 $_MUX_
+       8 $_XOR_
+  not replaced 4 cell types:
+       1 $_NOT_
+       4 IBUF
+       4 OBUF
+     125 $paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010
+
+6.23.16.1. Executing ABC9_OPS pass (helper functions for ABC9).
+
+6.23.16.2. Executing ABC9_OPS pass (helper functions for ABC9).
+
+6.23.16.3. Executing XAIGER backend.
+<suppressed ~11 debug messages>
+Extracted 60 AND gates and 416 wires from module `binary2thermometer' to a netlist network with 11 inputs and 8 outputs.
+
+6.23.16.4. Executing ABC9_EXE pass (technology mapping using ABC9).
+
+6.23.16.5. Executing ABC9.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_lut <abc-temp-dir>/input.lut 
+ABC: + read_box <abc-temp-dir>/input.box 
+ABC: + &read <abc-temp-dir>/input.xaig 
+ABC: + &ps 
+ABC: <abc-temp-dir>/input : i/o =     11/      8  and =      36  lev =    4 (0.15)  mem = 0.01 MB  box = 125  bb = 0
+ABC: Warning: AIG with boxes has internal fanout in 0 complex flops and 4 carries.
+ABC: + &scorr 
+ABC: Warning: The network is combinational.
+ABC: + &sweep 
+ABC: + &dc2 
+ABC: + &dch -f -r 
+ABC: + &ps 
+ABC: <abc-temp-dir>/input : i/o =     11/      8  and =      12  lev =    2 (0.41)  mem = 0.00 MB  ch =    0  box = 9  bb = 0
+ABC: cst =       0  cls =      0  lit =       0  unused =      41  proof =     0
+ABC: + &if -W 500 -v 
+ABC: K = 8. Memory (bytes): Truth =    0. Cut =   68. Obj =  152. Set =  708. CutMin = no
+ABC: Node =      12.  Ch =     0.  Total mem =    0.01 MB. Peak cut mem =    0.00 MB.
+ABC: P:  Del = 4876.00.  Ar =       8.0.  Edge =       24.  Cut =       20.  T =     0.00 sec
+ABC: P:  Del = 4876.00.  Ar =       8.0.  Edge =       24.  Cut =       20.  T =     0.00 sec
+ABC: P:  Del = 4876.00.  Ar =       8.0.  Edge =       24.  Cut =       20.  T =     0.00 sec
+ABC: F:  Del = 4876.00.  Ar =       8.0.  Edge =       24.  Cut =       20.  T =     0.00 sec
+ABC: A:  Del = 4876.00.  Ar =       8.0.  Edge =       24.  Cut =       20.  T =     0.00 sec
+ABC: A:  Del = 4876.00.  Ar =       8.0.  Edge =       24.  Cut =       20.  T =     0.00 sec
+ABC: Total time =     0.00 sec
+ABC: + &write -n <abc-temp-dir>/output.aig 
+ABC: + &mfs 
+ABC: The network is not changed by "&mfs".
+ABC: + &ps -l 
+ABC: <abc-temp-dir>/input : i/o =     11/      8  and =      16  lev =    2 (0.41)  mem = 0.00 MB  box = 9  bb = 0
+ABC: Mapping (K=3)  :  lut =      8  edge =      24  lev =    1 (0.20)  levB =   10  mem = 0.00 MB
+ABC: LUT = 8 : 2=0 0.0 %  3=8 100.0 %  Ave = 3.00
+ABC: + &write -n <abc-temp-dir>/output.aig 
+ABC: + time 
+ABC: elapse: 0.00 seconds, total: 0.00 seconds
+
+6.23.16.6. Executing AIGER frontend.
+<suppressed ~166 debug messages>
+Removed 11 unused cells and 91 unused wires.
+
+6.23.16.7. Executing ABC9_OPS pass (helper functions for ABC9).
+ABC RESULTS:              $lut cells:        8
+ABC RESULTS:   $paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010 cells:        9
+ABC RESULTS:           input signals:        3
+ABC RESULTS:          output signals:        2
+Removing temp directory.
+
+6.23.17. Executing TECHMAP pass (map to technology primitives).
+
+6.23.17.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/abc9_unmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/abc9_unmap.v' to AST representation.
+Generating RTLIL representation for module `$__DFF_x__$abc9_flop'.
+Generating RTLIL representation for module `$__ABC9_SCC_BREAKER'.
+Successfully finished Verilog frontend.
+
+6.23.17.2. Continuing TECHMAP pass.
+Using template $paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010 for cells of type $paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010.
+No more expansions possible.
+<suppressed ~15 debug messages>
+Removed 0 unused cells and 226 unused wires.
+
+6.24. Executing TECHMAP pass (map to technology primitives).
+
+6.24.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/gowin/cells_map.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/gowin/cells_map.v' to AST representation.
+Generating RTLIL representation for module `$_DFF_N_'.
+Generating RTLIL representation for module `$_DFF_P_'.
+Generating RTLIL representation for module `$_DFFE_PP_'.
+Generating RTLIL representation for module `$_DFFE_NP_'.
+Generating RTLIL representation for module `$_SDFF_PP0_'.
+Generating RTLIL representation for module `$_SDFF_NP0_'.
+Generating RTLIL representation for module `$_SDFFE_PP0P_'.
+Generating RTLIL representation for module `$_SDFFE_NP0P_'.
+Generating RTLIL representation for module `$_SDFF_PP1_'.
+Generating RTLIL representation for module `$_SDFF_NP1_'.
+Generating RTLIL representation for module `$_SDFFE_PP1P_'.
+Generating RTLIL representation for module `$_SDFFE_NP1P_'.
+Generating RTLIL representation for module `$_DFF_PP1_'.
+Generating RTLIL representation for module `$_DFF_NP1_'.
+Generating RTLIL representation for module `$_DFF_PP0_'.
+Generating RTLIL representation for module `$_DFF_NP0_'.
+Generating RTLIL representation for module `$_DFFE_PP1P_'.
+Generating RTLIL representation for module `$_DFFE_NP1P_'.
+Generating RTLIL representation for module `$_DFFE_PP0P_'.
+Generating RTLIL representation for module `$_DFFE_NP0P_'.
+Generating RTLIL representation for module `$lut'.
+Successfully finished Verilog frontend.
+
+6.24.2. Continuing TECHMAP pass.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11111110 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00001000 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00100000 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00000010 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'01000000 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00000100 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00010000 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00000001 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10000000 for cells of type $lut.
+No more expansions possible.
+<suppressed ~149 debug messages>
+
+6.25. Executing OPT_LUT_INS pass (discard unused LUT inputs).
+Optimizing LUTs in binary2thermometer.
+
+6.26. Executing HILOMAP pass (mapping to constant drivers).
+Removed 0 unused cells and 19 unused wires.
+
+6.27. Executing AUTONAME pass.
+Renamed 57 objects in module binary2thermometer (46 iterations).
+<suppressed ~57 debug messages>
+
+6.28. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `binary2thermometer'. Setting top module to binary2thermometer.
+
+6.28.1. Analyzing design hierarchy..
+Top module:  \binary2thermometer
+
+6.28.2. Analyzing design hierarchy..
+Top module:  \binary2thermometer
+Removed 0 unused modules.
+
+6.29. Printing statistics.
+
+=== binary2thermometer ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       32 wires
+       42 wire bits
+       32 public wires
+       42 public wire bits
+        3 ports
+        8 port bits
+       19 cells
+        1   GND
+        4   IBUF
+        9   LUT3
+        4   OBUF
+        1   VCC
+        9 submodules
+        9   ALU
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+       19 binary2thermometer
+
+        +----------Count including submodules.
+        | 
+       32 wires
+       42 wire bits
+       32 public wires
+       42 public wire bits
+        3 ports
+        8 port bits
+        - memories
+        - memory bits
+        - processes
+       19 cells
+        1   GND
+        4   IBUF
+        9   LUT3
+        4   OBUF
+        1   VCC
+        9 submodules
+        9   ALU
+
+6.30. Executing CHECK pass (checking for obvious problems).
+Checking module binary2thermometer...
+Found and reported 0 problems.
+
+6.31. Executing JSON backend.
+
+7. Generating Graphviz representation of design.
+Writing dot description to `binary2thermometer_SHIFT.dot'.
+Dumping module binary2thermometer to page 1.
+
+Warnings: 1 unique messages, 1 total
+End of script. Logfile hash: 5d22507eed, CPU: user 0.18s system 0.01s, MEM: 41.65 MB peak
+Yosys 0.61+112 (git sha1 ac427a79b, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)
+Time spent: 31% 18x read_verilog (0 sec), 10% 1x abc9_exe (0 sec), ...
