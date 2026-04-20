@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module pm32_tb_sdf #(
+module pm32_tb #(
     parameter int SIZE = 32
 )();
 
@@ -41,11 +41,8 @@ module pm32_tb_sdf #(
     );
 
     initial begin
-//        string SDF = {`LAST_RUN,
-        $sdf_annotate("runs/RUN_2026-04-19_16-23-06/final/sdf/nom_ss_100C_1v60/pm32__nom_ss_100C_1v60.sdf", dut);
-        $dumpfile("pm32_tb_sdf.vcd");
-        $dumpvars(0, pm32_tb_sdf);
-//        $dumpvars(0, dut);
+        $dumpfile("pm32_tb.vcd");
+        $dumpvars(0, pm32_tb);
     end
 
 endmodule

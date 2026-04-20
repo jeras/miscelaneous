@@ -1,6 +1,6 @@
 {
   "DESIGN_NAME": "pm32",
-  "VERILOG_FILES": ["dir::pm32.v", "dir::spm.v"],
+  "VERILOG_FILES": ["dir::pm32.sv", "dir::spm.v"],
   "CLOCK_PERIOD": 25,
   "CLOCK_PORT": "clk",
   "IO_PIN_ORDER_CFG": "dir::pin_order.cfg"
