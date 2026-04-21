@@ -9,6 +9,8 @@ the results placed into the `runs/latest` folder.
 
 ```sh
 librelane --run-tag latest config.json
+librelane --run-tag latest_sky130_fd_sc_hd --scl sky130_fd_sc_hd config.json
+librelane --run-tag latest_sky130_fd_sc_lp --scl sky130_fd_sc_lp config.json
 ```
 
 The interconnect and PVT corners are a variable in the `test.sh` file.

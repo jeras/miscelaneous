@@ -3,19 +3,20 @@
 PDK_HASH=c95f23a75038d54d60ecc7ca060f53851f8f25e5
 #PDK_PATH=~/.ciel/ciel/sky130/versions/${PDK_HASH}/sky130A
 PDK_PATH=~/.ciel/sky130A
-PRIMITIVES=${PDK_PATH}/libs.ref/sky130_fd_sc_hd/verilog/primitives.v
-#CELLS=${PDK_PATH}/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v
-CELLS=sky130_fd_sc_hd.v
+SCL=sky130_fd_sc_hd
+PRIMITIVES=${PDK_PATH}/libs.ref/${SCL}/verilog/primitives.v
+#CELLS=${PDK_PATH}/libs.ref/${SCL}/verilog/${SCL}.v
+CELLS=${SCL}.v
 
 LAST_RUN=$(ls -td runs/*/ | head -1)
-RUN="runs/latest"
+RUN="runs/latest_${SCL}"
 NETLIST=${RUN}/final/nl/pm32.nl.v
 
 INTERCONNECT=nom
 #CORNER=ss_100C_1v60
 CORNER=tt_025C_1v80
 SDF=$RUN/final/sdf/${INTERCONNECT}_${CORNER}/pm32__${INTERCONNECT}_${CORNER}.sdf
-LIBERTY=${PDK_PATH}/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__${CORNER}.lib
+LIBERTY=${PDK_PATH}/libs.ref/${SCL}/lib/${SCL}__${CORNER}.lib
 SPEF=${RUN}/final/spef/${INTERCONNECT}/pm32.${INTERCONNECT}.spef
 
 case $1 in
