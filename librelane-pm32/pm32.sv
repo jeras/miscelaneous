@@ -12,28 +12,32 @@ module pm32 #(
     input  wire               rst,
     input  wire  [  SIZE-1:0] mc,
     input  wire  [  SIZE-1:0] mp,
-    output reg   [2*SIZE-1:0] p,
+    output logic [2*SIZE-1:0] p,
     input  wire               start,
-    output wire               done
+    output logic              done
 );
-    wire                      pw;
-    reg  [       SIZE   -1:0] Y;
-    reg  [$clog2(SIZE)+3-1:0] cnt, ncnt;
-    reg                 [1:0] state, nstate;
+    wire                       pw;
+    logic [       SIZE   -1:0] Y;
+    logic [$clog2(SIZE)+3-1:0] cnt, ncnt;
+    logic                      state, pstate;
 
-    localparam IDLE=0, RUNNING=1, DONE=2;
+    localparam IDLE=0, RUNNING=1;
 
     always @(posedge clk, posedge rst)
-    if (rst)  state <= IDLE;
-    else      state <= nstate;
-    
-    always @*
-    case (state)
-        IDLE    :   if(start)         nstate = RUNNING; else nstate = IDLE   ;
-        RUNNING :   if(cnt == 2*SIZE) nstate = DONE   ; else nstate = RUNNING; 
-        DONE    :   if(start)         nstate = RUNNING; else nstate = DONE   ;
-        default :                     nstate = IDLE   ;
-    endcase
+    if (rst) begin
+        state <= IDLE;
+        pstate <= IDLE;
+        done <= 1'b0;
+    end 
+    else begin
+        case (state)
+            IDLE    :   if(start)         state <= RUNNING; else state <= IDLE   ;
+            RUNNING :   if(cnt == 2*SIZE) state <= IDLE   ; else state <= RUNNING; 
+            default :                     state <= IDLE   ;
+        endcase
+        pstate <= state;
+        done <= pstate & ~state;
+    end
     
     always @(posedge clk)
     cnt <= ncnt;
@@ -42,7 +46,6 @@ module pm32 #(
     case(state)
         IDLE    :   ncnt = 0;
         RUNNING :   ncnt = cnt + 1;
-        DONE    :   ncnt = 0;
         default :   ncnt = 0;
     endcase
 
@@ -73,7 +76,5 @@ module pm32 #(
         .y   (y),
         .p   (pw)
     );
-
-    assign done = (state == DONE);
 
 endmodule
