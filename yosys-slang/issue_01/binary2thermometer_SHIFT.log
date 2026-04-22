@@ -764,7 +764,6 @@ Removed 8 unused cells and 220 unused wires.
 
 6.16. Executing IOPADMAP pass (mapping inputs/outputs to IO-PAD cells).
 Mapping port binary2thermometer.binary using IBUF.
-Mapping port binary2thermometer.clk using IBUF.
 Mapping port binary2thermometer.thermometer using OBUF.
 
 6.17. Executing OPT_CLEAN pass (remove unused cells and wires).
@@ -1068,13 +1067,13 @@ Module binary2thermometer: replaced 5 cells with 35 new cells, skipped 9 cells.
        8 $specify2
 
 6.23.16. Executing AIGMAP pass (map logic to AIG).
-Module binary2thermometer: replaced 20 cells with 140 new cells, skipped 134 cells.
+Module binary2thermometer: replaced 20 cells with 140 new cells, skipped 133 cells.
   replaced 2 cell types:
       12 $_MUX_
        8 $_XOR_
   not replaced 4 cell types:
        1 $_NOT_
-       4 IBUF
+       3 IBUF
        4 OBUF
      125 $paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010
 
@@ -1084,7 +1083,7 @@ Module binary2thermometer: replaced 20 cells with 140 new cells, skipped 134 cel
 
 6.23.16.3. Executing XAIGER backend.
 <suppressed ~11 debug messages>
-Extracted 60 AND gates and 416 wires from module `binary2thermometer' to a netlist network with 11 inputs and 8 outputs.
+Extracted 60 AND gates and 415 wires from module `binary2thermometer' to a netlist network with 10 inputs and 8 outputs.
 
 6.23.16.4. Executing ABC9_EXE pass (technology mapping using ABC9).
 
@@ -1095,7 +1094,7 @@ ABC: + read_lut <abc-temp-dir>/input.lut
 ABC: + read_box <abc-temp-dir>/input.box 
 ABC: + &read <abc-temp-dir>/input.xaig 
 ABC: + &ps 
-ABC: <abc-temp-dir>/input : i/o =     11/      8  and =      36  lev =    4 (0.15)  mem = 0.01 MB  box = 125  bb = 0
+ABC: <abc-temp-dir>/input : i/o =     10/      8  and =      36  lev =    4 (0.15)  mem = 0.01 MB  box = 125  bb = 0
 ABC: Warning: AIG with boxes has internal fanout in 0 complex flops and 4 carries.
 ABC: + &scorr 
 ABC: Warning: The network is combinational.
@@ -1103,8 +1102,8 @@ ABC: + &sweep
 ABC: + &dc2 
 ABC: + &dch -f -r 
 ABC: + &ps 
-ABC: <abc-temp-dir>/input : i/o =     11/      8  and =      12  lev =    2 (0.41)  mem = 0.00 MB  ch =    0  box = 9  bb = 0
-ABC: cst =       0  cls =      0  lit =       0  unused =      41  proof =     0
+ABC: <abc-temp-dir>/input : i/o =     10/      8  and =      12  lev =    2 (0.41)  mem = 0.00 MB  ch =    0  box = 9  bb = 0
+ABC: cst =       0  cls =      0  lit =       0  unused =      40  proof =     0
 ABC: + &if -W 500 -v 
 ABC: K = 8. Memory (bytes): Truth =    0. Cut =   68. Obj =  152. Set =  708. CutMin = no
 ABC: Node =      12.  Ch =     0.  Total mem =    0.01 MB. Peak cut mem =    0.00 MB.
@@ -1119,7 +1118,7 @@ ABC: + &write -n <abc-temp-dir>/output.aig
 ABC: + &mfs 
 ABC: The network is not changed by "&mfs".
 ABC: + &ps -l 
-ABC: <abc-temp-dir>/input : i/o =     11/      8  and =      16  lev =    2 (0.41)  mem = 0.00 MB  box = 9  bb = 0
+ABC: <abc-temp-dir>/input : i/o =     10/      8  and =      16  lev =    2 (0.41)  mem = 0.00 MB  box = 9  bb = 0
 ABC: Mapping (K=3)  :  lut =      8  edge =      24  lev =    1 (0.20)  levB =   10  mem = 0.00 MB
 ABC: LUT = 8 : 2=0 0.0 %  3=8 100.0 %  Ave = 3.00
 ABC: + &write -n <abc-temp-dir>/output.aig 
@@ -1127,13 +1126,13 @@ ABC: + time
 ABC: elapse: 0.00 seconds, total: 0.00 seconds
 
 6.23.16.6. Executing AIGER frontend.
-<suppressed ~166 debug messages>
-Removed 11 unused cells and 91 unused wires.
+<suppressed ~164 debug messages>
+Removed 11 unused cells and 90 unused wires.
 
 6.23.16.7. Executing ABC9_OPS pass (helper functions for ABC9).
 ABC RESULTS:              $lut cells:        8
 ABC RESULTS:   $paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010 cells:        9
-ABC RESULTS:           input signals:        3
+ABC RESULTS:           input signals:        2
 ABC RESULTS:          output signals:        2
 Removing temp directory.
 
@@ -1149,7 +1148,7 @@ Successfully finished Verilog frontend.
 Using template $paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010 for cells of type $paramod\ALU\ALU_MODE=s32'00000000000000000000000000000010.
 No more expansions possible.
 <suppressed ~15 debug messages>
-Removed 0 unused cells and 226 unused wires.
+Removed 0 unused cells and 225 unused wires.
 
 6.24. Executing TECHMAP pass (map to technology primitives).
 
@@ -1198,8 +1197,8 @@ Optimizing LUTs in binary2thermometer.
 Removed 0 unused cells and 19 unused wires.
 
 6.27. Executing AUTONAME pass.
-Renamed 57 objects in module binary2thermometer (46 iterations).
-<suppressed ~57 debug messages>
+Renamed 55 objects in module binary2thermometer (44 iterations).
+<suppressed ~55 debug messages>
 
 6.28. Executing HIERARCHY pass (managing design hierarchy).
 Attribute `top' found on module `binary2thermometer'. Setting top module to binary2thermometer.
@@ -1217,15 +1216,15 @@ Removed 0 unused modules.
 
         +----------Local Count, excluding submodules.
         | 
-       32 wires
-       42 wire bits
-       32 public wires
-       42 public wire bits
-        3 ports
-        8 port bits
-       19 cells
+       30 wires
+       40 wire bits
+       30 public wires
+       40 public wire bits
+        2 ports
+        7 port bits
+       18 cells
         1   GND
-        4   IBUF
+        3   IBUF
         9   LUT3
         4   OBUF
         1   VCC
@@ -1236,22 +1235,22 @@ Removed 0 unused modules.
 
         +----------Count including submodules.
         | 
-       19 binary2thermometer
+       18 binary2thermometer
 
         +----------Count including submodules.
         | 
-       32 wires
-       42 wire bits
-       32 public wires
-       42 public wire bits
-        3 ports
-        8 port bits
+       30 wires
+       40 wire bits
+       30 public wires
+       40 public wire bits
+        2 ports
+        7 port bits
         - memories
         - memory bits
         - processes
-       19 cells
+       18 cells
         1   GND
-        4   IBUF
+        3   IBUF
         9   LUT3
         4   OBUF
         1   VCC
@@ -1269,6 +1268,6 @@ Writing dot description to `binary2thermometer_SHIFT.dot'.
 Dumping module binary2thermometer to page 1.
 
 Warnings: 1 unique messages, 1 total
-End of script. Logfile hash: 5d22507eed, CPU: user 0.18s system 0.01s, MEM: 41.65 MB peak
+End of script. Logfile hash: cd554d1dd4, CPU: user 0.17s system 0.02s, MEM: 42.08 MB peak
 Yosys 0.61+112 (git sha1 ac427a79b, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)
-Time spent: 31% 18x read_verilog (0 sec), 10% 1x abc9_exe (0 sec), ...
+Time spent: 31% 18x read_verilog (0 sec), 11% 1x abc9_exe (0 sec), ...

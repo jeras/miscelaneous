@@ -2,7 +2,6 @@ module binary2thermometer #(
     parameter int unsigned WIDTH = 4,
     parameter string       IMPLEMENTATION = "POWER"  // supported "POWER"/"SHIFT"
 )(
-    input  logic                       clk,
     input  logic [$clog2(WIDTH+1)-1:0] binary,
     output logic [       WIDTH   -1:0] thermometer
 );

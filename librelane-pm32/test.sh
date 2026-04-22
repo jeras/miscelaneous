@@ -1,25 +1,83 @@
 #!/usr/bin/env bash
 
-PDK_HASH=c95f23a75038d54d60ecc7ca060f53851f8f25e5
-#PDK_PATH=~/.ciel/ciel/sky130/versions/${PDK_HASH}/sky130A
-PDK_PATH=~/.ciel/sky130A
-SCL=sky130_fd_sc_hd
-PRIMITIVES=${PDK_PATH}/libs.ref/${SCL}/verilog/primitives.v
-#CELLS=${PDK_PATH}/libs.ref/${SCL}/verilog/${SCL}.v
-CELLS=${SCL}.v
+# default simulator
+SIM=iverilog
 
-LAST_RUN=$(ls -td runs/*/ | head -1)
-RUN="runs/latest_${SCL}"
+# default PDK
+PDK_HASH=c95f23a75038d54d60ecc7ca060f53851f8f25e5
+#PDK=~/.ciel/ciel/sky130/versions/${PDK_HASH}/sky130A
+PDK=~/.ciel/sky130A
+
+# default SCL
+SCL=sky130_fd_sc_hd
+
+# default RUN (latest run)
+RUN=$(ls -td runs/*/ | head -1)
+
+# default interconnect and corner
+INTERCONNECT=nom
+CORNER=tt_025C_1v80
+
+# parse CLI arguments to override the defaults
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --sim)
+            SIM="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        --pdk)
+            PDK="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        --scl)
+            SCL="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        --run)
+            RUN="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        --interconnect)
+            INTERCONNECT="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        --corner)
+            CORNER="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        --cells)
+            CELLS="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        -*|--*)
+            echo "Unknown option $1"
+            exit 1
+            ;;
+        *)
+            echo "Unknown positional argument $1"
+            exit 1
+            ;;
+    esac
+done
+
+PRIMITIVES=${PDK}/libs.ref/${SCL}/verilog/primitives.v
+#CELLS=${PDK}/libs.ref/${SCL}/verilog/${SCL}.v
+CELLS="${CELLS:-${PDK}/libs.ref/${SCL}/verilog/${SCL}.v}"
+
 NETLIST=${RUN}/final/nl/pm32.nl.v
 
-INTERCONNECT=nom
-#CORNER=ss_100C_1v60
-CORNER=tt_025C_1v80
 SDF=$RUN/final/sdf/${INTERCONNECT}_${CORNER}/pm32__${INTERCONNECT}_${CORNER}.sdf
-LIBERTY=${PDK_PATH}/libs.ref/${SCL}/lib/${SCL}__${CORNER}.lib
+LIBERTY=${PDK}/libs.ref/${SCL}/lib/${SCL}__${CORNER}.lib
 SPEF=${RUN}/final/spef/${INTERCONNECT}/pm32.${INTERCONNECT}.spef
 
-case $1 in
+case $SIM in
 
     "cvc")
         echo "================================================================"
@@ -79,6 +137,11 @@ case $1 in
         pm32_tb_sdf.sv \
         -o m32_tb_sdf
         vvp m32_tb_sdf
+        ;;
+
+    *)
+        echo "ERROR: unsupported simulator"
+        exit 1
         ;;
 
 esac

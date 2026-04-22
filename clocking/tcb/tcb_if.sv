@@ -82,6 +82,7 @@ interface tcb_if #(
 
   // manager
   clocking cb_man @(posedge clk);
+    default input #1step output posedge;
     // handshake
     output vld;
     input  rdy;
@@ -96,6 +97,7 @@ interface tcb_if #(
 
   // monitor
   clocking cb_mon @(posedge clk);
+    default input #1step output posedge;
     // handshake
     input  vld;
     input  rdy;
@@ -110,6 +112,7 @@ interface tcb_if #(
 
   // subordinate
   clocking cb_sub @(posedge clk);
+    default input #1step output posedge;
     // handshake
     input  vld;
     output rdy;

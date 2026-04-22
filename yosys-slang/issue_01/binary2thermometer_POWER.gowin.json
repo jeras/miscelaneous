@@ -17725,17 +17725,13 @@
         "src": "binary2thermometer.sv:1.8"
       },
       "ports": {
-        "clk": {
-          "direction": "input",
-          "bits": [ 2 ]
-        },
         "binary": {
           "direction": "input",
-          "bits": [ 3, 4, 5 ]
+          "bits": [ 2, 3, 4 ]
         },
         "thermometer": {
           "direction": "output",
-          "bits": [ 6, 7, 8, 9 ]
+          "bits": [ 5, 6, 7, 8 ]
         }
       },
       "cells": {
@@ -17752,8 +17748,8 @@
             "O": "output"
           },
           "connections": {
-            "I": [ 5 ],
-            "O": [ 10 ]
+            "I": [ 4 ],
+            "O": [ 9 ]
           }
         },
         "binary_IBUF_I_1": {
@@ -17769,8 +17765,8 @@
             "O": "output"
           },
           "connections": {
-            "I": [ 4 ],
-            "O": [ 11 ]
+            "I": [ 3 ],
+            "O": [ 10 ]
           }
         },
         "binary_IBUF_I_2": {
@@ -17786,25 +17782,8 @@
             "O": "output"
           },
           "connections": {
-            "I": [ 3 ],
-            "O": [ 12 ]
-          }
-        },
-        "clk_IBUF_I": {
-          "hide_name": 0,
-          "type": "IBUF",
-          "parameters": {
-          },
-          "attributes": {
-            "keep": "00000000000000000000000000000001"
-          },
-          "port_directions": {
-            "I": "input",
-            "O": "output"
-          },
-          "connections": {
             "I": [ 2 ],
-            "O": [ 13 ]
+            "O": [ 11 ]
           }
         },
         "thermometer_OBUF_O": {
@@ -17820,8 +17799,8 @@
             "O": "output"
           },
           "connections": {
-            "I": [ 14 ],
-            "O": [ 9 ]
+            "I": [ 12 ],
+            "O": [ 8 ]
           }
         },
         "thermometer_OBUF_O_1": {
@@ -17837,8 +17816,8 @@
             "O": "output"
           },
           "connections": {
-            "I": [ 14 ],
-            "O": [ 8 ]
+            "I": [ 12 ],
+            "O": [ 7 ]
           }
         },
         "thermometer_OBUF_O_2": {
@@ -17854,8 +17833,8 @@
             "O": "output"
           },
           "connections": {
-            "I": [ 14 ],
-            "O": [ 7 ]
+            "I": [ 12 ],
+            "O": [ 6 ]
           }
         },
         "thermometer_OBUF_O_3": {
@@ -17871,8 +17850,8 @@
             "O": "output"
           },
           "connections": {
-            "I": [ 14 ],
-            "O": [ 6 ]
+            "I": [ 12 ],
+            "O": [ 5 ]
           }
         },
         "thermometer_OBUF_O_I_GND_G": {
@@ -17886,52 +17865,37 @@
             "G": "output"
           },
           "connections": {
-            "G": [ 14 ]
+            "G": [ 12 ]
           }
         }
       },
       "netnames": {
         "binary": {
           "hide_name": 0,
-          "bits": [ 3, 4, 5 ],
+          "bits": [ 2, 3, 4 ],
           "attributes": {
             "hdlname": "binary",
-            "src": "binary2thermometer.sv:6.40"
+            "src": "binary2thermometer.sv:5.40"
           }
         },
         "binary_IBUF_I_O": {
           "hide_name": 0,
-          "bits": [ 12, 11, 10 ],
+          "bits": [ 11, 10, 9 ],
           "attributes": {
             "unused_bits": "0 1 2"
           }
         },
-        "clk": {
-          "hide_name": 0,
-          "bits": [ 2 ],
-          "attributes": {
-            "hdlname": "clk",
-            "src": "binary2thermometer.sv:5.40"
-          }
-        },
-        "clk_IBUF_I_O": {
-          "hide_name": 0,
-          "bits": [ 13 ],
-          "attributes": {
-            "unused_bits": "0 "
-          }
-        },
         "thermometer": {
           "hide_name": 0,
-          "bits": [ 6, 7, 8, 9 ],
+          "bits": [ 5, 6, 7, 8 ],
           "attributes": {
             "hdlname": "thermometer",
-            "src": "binary2thermometer.sv:9.40"
+            "src": "binary2thermometer.sv:6.40"
           }
         },
         "thermometer_OBUF_O_I": {
           "hide_name": 0,
-          "bits": [ 14 ],
+          "bits": [ 12 ],
           "attributes": {
           }
         }

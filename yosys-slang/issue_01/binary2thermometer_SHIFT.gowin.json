@@ -17722,17 +17722,13 @@
         "src": "binary2thermometer.sv:1.8"
       },
       "ports": {
-        "clk": {
-          "direction": "input",
-          "bits": [ 2 ]
-        },
         "binary": {
           "direction": "input",
-          "bits": [ 3, 4, 5 ]
+          "bits": [ 2, 3, 4 ]
         },
         "thermometer": {
           "direction": "output",
-          "bits": [ 6, 7, 8, 9 ]
+          "bits": [ 5, 6, 7, 8 ]
         }
       },
       "cells": {
@@ -17749,8 +17745,8 @@
             "O": "output"
           },
           "connections": {
-            "I": [ 5 ],
-            "O": [ 10 ]
+            "I": [ 4 ],
+            "O": [ 9 ]
           }
         },
         "binary_IBUF_I_1": {
@@ -17766,8 +17762,8 @@
             "O": "output"
           },
           "connections": {
-            "I": [ 4 ],
-            "O": [ 11 ]
+            "I": [ 3 ],
+            "O": [ 10 ]
           }
         },
         "binary_IBUF_I_2": {
@@ -17783,25 +17779,8 @@
             "O": "output"
           },
           "connections": {
-            "I": [ 3 ],
-            "O": [ 12 ]
-          }
-        },
-        "clk_IBUF_I": {
-          "hide_name": 0,
-          "type": "IBUF",
-          "parameters": {
-          },
-          "attributes": {
-            "keep": "00000000000000000000000000000001"
-          },
-          "port_directions": {
-            "I": "input",
-            "O": "output"
-          },
-          "connections": {
             "I": [ 2 ],
-            "O": [ 13 ]
+            "O": [ 11 ]
           }
         },
         "thermometer_OBUF_O": {
@@ -17817,8 +17796,8 @@
             "O": "output"
           },
           "connections": {
-            "I": [ 14 ],
-            "O": [ 9 ]
+            "I": [ 12 ],
+            "O": [ 8 ]
           }
         },
         "thermometer_OBUF_O_1": {
@@ -17834,8 +17813,8 @@
             "O": "output"
           },
           "connections": {
-            "I": [ 14 ],
-            "O": [ 8 ]
+            "I": [ 12 ],
+            "O": [ 7 ]
           }
         },
         "thermometer_OBUF_O_2": {
@@ -17851,8 +17830,8 @@
             "O": "output"
           },
           "connections": {
-            "I": [ 15 ],
-            "O": [ 7 ]
+            "I": [ 13 ],
+            "O": [ 6 ]
           }
         },
         "thermometer_OBUF_O_3": {
@@ -17868,8 +17847,8 @@
             "O": "output"
           },
           "connections": {
-            "I": [ 16 ],
-            "O": [ 6 ]
+            "I": [ 14 ],
+            "O": [ 5 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM": {
@@ -17880,7 +17859,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
           },
           "port_directions": {
             "CIN": "input",
@@ -17891,12 +17870,12 @@
             "SUM": "output"
           },
           "connections": {
-            "CIN": [ 17 ],
-            "COUT": [ 18 ],
-            "I0": [ 19 ],
-            "I1": [ 19 ],
-            "I3": [ 19 ],
-            "SUM": [ 14 ]
+            "CIN": [ 15 ],
+            "COUT": [ 16 ],
+            "I0": [ 17 ],
+            "I1": [ 17 ],
+            "I3": [ 17 ],
+            "SUM": [ 12 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT": {
@@ -17907,7 +17886,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
           },
           "port_directions": {
             "CIN": "input",
@@ -17918,12 +17897,12 @@
             "SUM": "output"
           },
           "connections": {
-            "CIN": [ 20 ],
-            "COUT": [ 17 ],
-            "I0": [ 19 ],
-            "I1": [ 21 ],
-            "I3": [ 19 ],
-            "SUM": [ 22 ]
+            "CIN": [ 18 ],
+            "COUT": [ 15 ],
+            "I0": [ 17 ],
+            "I1": [ 19 ],
+            "I3": [ 17 ],
+            "SUM": [ 20 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT": {
@@ -17934,7 +17913,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
           },
           "port_directions": {
             "CIN": "input",
@@ -17945,12 +17924,12 @@
             "SUM": "output"
           },
           "connections": {
-            "CIN": [ 23 ],
-            "COUT": [ 20 ],
-            "I0": [ 19 ],
-            "I1": [ 24 ],
-            "I3": [ 19 ],
-            "SUM": [ 25 ]
+            "CIN": [ 21 ],
+            "COUT": [ 18 ],
+            "I0": [ 17 ],
+            "I1": [ 22 ],
+            "I3": [ 17 ],
+            "SUM": [ 23 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT": {
@@ -17961,7 +17940,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
           },
           "port_directions": {
             "CIN": "input",
@@ -17972,12 +17951,12 @@
             "SUM": "output"
           },
           "connections": {
-            "CIN": [ 26 ],
-            "COUT": [ 23 ],
-            "I0": [ 19 ],
-            "I1": [ 27 ],
-            "I3": [ 19 ],
-            "SUM": [ 28 ]
+            "CIN": [ 24 ],
+            "COUT": [ 21 ],
+            "I0": [ 17 ],
+            "I1": [ 25 ],
+            "I3": [ 17 ],
+            "SUM": [ 26 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT": {
@@ -17988,7 +17967,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
           },
           "port_directions": {
             "CIN": "input",
@@ -17999,12 +17978,12 @@
             "SUM": "output"
           },
           "connections": {
-            "CIN": [ 29 ],
-            "COUT": [ 26 ],
-            "I0": [ 19 ],
-            "I1": [ 30 ],
-            "I3": [ 19 ],
-            "SUM": [ 31 ]
+            "CIN": [ 27 ],
+            "COUT": [ 24 ],
+            "I0": [ 17 ],
+            "I1": [ 28 ],
+            "I3": [ 17 ],
+            "SUM": [ 29 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT": {
@@ -18015,7 +17994,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
           },
           "port_directions": {
             "CIN": "input",
@@ -18026,12 +18005,12 @@
             "SUM": "output"
           },
           "connections": {
-            "CIN": [ 32 ],
-            "COUT": [ 29 ],
-            "I0": [ 19 ],
-            "I1": [ 33 ],
-            "I3": [ 19 ],
-            "SUM": [ 34 ]
+            "CIN": [ 30 ],
+            "COUT": [ 27 ],
+            "I0": [ 17 ],
+            "I1": [ 31 ],
+            "I3": [ 17 ],
+            "SUM": [ 32 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT": {
@@ -18042,7 +18021,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
           },
           "port_directions": {
             "CIN": "input",
@@ -18053,12 +18032,12 @@
             "SUM": "output"
           },
           "connections": {
-            "CIN": [ 35 ],
-            "COUT": [ 32 ],
-            "I0": [ 19 ],
-            "I1": [ 36 ],
-            "I3": [ 19 ],
-            "SUM": [ 37 ]
+            "CIN": [ 33 ],
+            "COUT": [ 30 ],
+            "I0": [ 17 ],
+            "I1": [ 34 ],
+            "I3": [ 17 ],
+            "SUM": [ 35 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT": {
@@ -18069,7 +18048,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
           },
           "port_directions": {
             "CIN": "input",
@@ -18080,12 +18059,12 @@
             "SUM": "output"
           },
           "connections": {
-            "CIN": [ 38 ],
-            "COUT": [ 35 ],
-            "I0": [ 16 ],
-            "I1": [ 39 ],
-            "I3": [ 19 ],
-            "SUM": [ 40 ]
+            "CIN": [ 36 ],
+            "COUT": [ 33 ],
+            "I0": [ 14 ],
+            "I1": [ 37 ],
+            "I3": [ 17 ],
+            "SUM": [ 38 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT": {
@@ -18096,7 +18075,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5"
           },
           "port_directions": {
             "CIN": "input",
@@ -18107,12 +18086,12 @@
             "SUM": "output"
           },
           "connections": {
-            "CIN": [ 16 ],
-            "COUT": [ 38 ],
-            "I0": [ 19 ],
-            "I1": [ 41 ],
-            "I3": [ 19 ],
-            "SUM": [ 42 ]
+            "CIN": [ 14 ],
+            "COUT": [ 36 ],
+            "I0": [ 17 ],
+            "I1": [ 39 ],
+            "I3": [ 17 ],
+            "SUM": [ 40 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_I1_LUT3_F": {
@@ -18132,10 +18111,10 @@
             "I2": "input"
           },
           "connections": {
-            "F": [ 41 ],
-            "I0": [ 10 ],
-            "I1": [ 11 ],
-            "I2": [ 12 ]
+            "F": [ 39 ],
+            "I0": [ 9 ],
+            "I1": [ 10 ],
+            "I2": [ 11 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_I1_LUT3_F": {
@@ -18155,10 +18134,10 @@
             "I2": "input"
           },
           "connections": {
-            "F": [ 39 ],
-            "I0": [ 10 ],
-            "I1": [ 11 ],
-            "I2": [ 12 ]
+            "F": [ 37 ],
+            "I0": [ 9 ],
+            "I1": [ 10 ],
+            "I2": [ 11 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_I1_LUT3_F": {
@@ -18178,10 +18157,10 @@
             "I2": "input"
           },
           "connections": {
-            "F": [ 36 ],
-            "I0": [ 10 ],
-            "I1": [ 11 ],
-            "I2": [ 12 ]
+            "F": [ 34 ],
+            "I0": [ 9 ],
+            "I1": [ 10 ],
+            "I2": [ 11 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_I1_LUT3_F": {
@@ -18201,10 +18180,10 @@
             "I2": "input"
           },
           "connections": {
-            "F": [ 33 ],
-            "I0": [ 10 ],
-            "I1": [ 11 ],
-            "I2": [ 12 ]
+            "F": [ 31 ],
+            "I0": [ 9 ],
+            "I1": [ 10 ],
+            "I2": [ 11 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_I1_LUT3_F": {
@@ -18224,10 +18203,10 @@
             "I2": "input"
           },
           "connections": {
-            "F": [ 30 ],
-            "I0": [ 10 ],
-            "I1": [ 11 ],
-            "I2": [ 12 ]
+            "F": [ 28 ],
+            "I0": [ 9 ],
+            "I1": [ 10 ],
+            "I2": [ 11 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_I1_LUT3_F": {
@@ -18247,10 +18226,10 @@
             "I2": "input"
           },
           "connections": {
-            "F": [ 27 ],
-            "I0": [ 10 ],
-            "I1": [ 11 ],
-            "I2": [ 12 ]
+            "F": [ 25 ],
+            "I0": [ 9 ],
+            "I1": [ 10 ],
+            "I2": [ 11 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_I1_LUT3_F": {
@@ -18270,10 +18249,10 @@
             "I2": "input"
           },
           "connections": {
-            "F": [ 24 ],
-            "I0": [ 10 ],
-            "I1": [ 11 ],
-            "I2": [ 12 ]
+            "F": [ 22 ],
+            "I0": [ 9 ],
+            "I1": [ 10 ],
+            "I2": [ 11 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_I1_LUT3_F": {
@@ -18293,10 +18272,10 @@
             "I2": "input"
           },
           "connections": {
-            "F": [ 21 ],
-            "I0": [ 10 ],
-            "I1": [ 11 ],
-            "I2": [ 12 ]
+            "F": [ 19 ],
+            "I0": [ 9 ],
+            "I1": [ 10 ],
+            "I2": [ 11 ]
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_I0_GND_G": {
@@ -18310,7 +18289,7 @@
             "G": "output"
           },
           "connections": {
-            "G": [ 19 ]
+            "G": [ 17 ]
           }
         },
         "thermometer_OBUF_O_I_LUT3_F": {
@@ -18330,10 +18309,10 @@
             "I2": "input"
           },
           "connections": {
-            "F": [ 15 ],
-            "I0": [ 10 ],
-            "I1": [ 11 ],
-            "I2": [ 12 ]
+            "F": [ 13 ],
+            "I0": [ 9 ],
+            "I1": [ 10 ],
+            "I2": [ 11 ]
           }
         },
         "thermometer_OBUF_O_I_VCC_V": {
@@ -18347,236 +18326,221 @@
             "V": "output"
           },
           "connections": {
-            "V": [ 16 ]
+            "V": [ 14 ]
           }
         }
       },
       "netnames": {
         "binary": {
           "hide_name": 0,
-          "bits": [ 3, 4, 5 ],
+          "bits": [ 2, 3, 4 ],
           "attributes": {
             "hdlname": "binary",
-            "src": "binary2thermometer.sv:6.40"
+            "src": "binary2thermometer.sv:5.40"
           }
         },
         "binary_IBUF_I_O": {
           "hide_name": 0,
-          "bits": [ 10, 11, 12 ],
+          "bits": [ 9, 10, 11 ],
           "attributes": {
             "force_downto": "00000000000000000000000000000001",
             "src": "/usr/local/bin/../share/yosys/gowin/cells_map.v:130.20-130.21"
           }
         },
-        "clk": {
-          "hide_name": 0,
-          "bits": [ 2 ],
-          "attributes": {
-            "hdlname": "clk",
-            "src": "binary2thermometer.sv:5.40"
-          }
-        },
-        "clk_IBUF_I_O": {
-          "hide_name": 0,
-          "bits": [ 13 ],
-          "attributes": {
-            "unused_bits": "0 "
-          }
-        },
         "thermometer": {
           "hide_name": 0,
-          "bits": [ 6, 7, 8, 9 ],
+          "bits": [ 5, 6, 7, 8 ],
           "attributes": {
             "hdlname": "thermometer",
-            "src": "binary2thermometer.sv:9.40"
+            "src": "binary2thermometer.sv:6.40"
           }
         },
         "thermometer_OBUF_O_I": {
           "hide_name": 0,
-          "bits": [ 16, 15, 14, 14 ],
+          "bits": [ 14, 13, 12, 12 ],
           "attributes": {
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN": {
           "hide_name": 0,
-          "bits": [ 17 ],
+          "bits": [ 15 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29"
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN": {
           "hide_name": 0,
-          "bits": [ 20 ],
+          "bits": [ 18 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29"
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN": {
           "hide_name": 0,
-          "bits": [ 23 ],
+          "bits": [ 21 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29"
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN": {
           "hide_name": 0,
-          "bits": [ 26 ],
+          "bits": [ 24 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29"
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN": {
           "hide_name": 0,
-          "bits": [ 29 ],
+          "bits": [ 27 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29"
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN": {
           "hide_name": 0,
-          "bits": [ 32 ],
+          "bits": [ 30 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29"
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN": {
           "hide_name": 0,
-          "bits": [ 35 ],
+          "bits": [ 33 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29"
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN": {
           "hide_name": 0,
-          "bits": [ 38 ],
+          "bits": [ 36 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29"
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29"
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_I1": {
-          "hide_name": 0,
-          "bits": [ 41 ],
-          "attributes": {
-          }
-        },
-        "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_SUM": {
-          "hide_name": 0,
-          "bits": [ 42 ],
-          "attributes": {
-            "unused_bits": "0 "
-          }
-        },
-        "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_I1": {
           "hide_name": 0,
           "bits": [ 39 ],
           "attributes": {
           }
         },
-        "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_SUM": {
+        "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_SUM": {
           "hide_name": 0,
           "bits": [ 40 ],
           "attributes": {
             "unused_bits": "0 "
           }
         },
+        "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_I1": {
+          "hide_name": 0,
+          "bits": [ 37 ],
+          "attributes": {
+          }
+        },
+        "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_SUM": {
+          "hide_name": 0,
+          "bits": [ 38 ],
+          "attributes": {
+            "unused_bits": "0 "
+          }
+        },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_I1": {
           "hide_name": 0,
-          "bits": [ 36 ],
+          "bits": [ 34 ],
           "attributes": {
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_SUM": {
           "hide_name": 0,
-          "bits": [ 37 ],
+          "bits": [ 35 ],
           "attributes": {
             "unused_bits": "0 "
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_I1": {
           "hide_name": 0,
-          "bits": [ 33 ],
+          "bits": [ 31 ],
           "attributes": {
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_SUM": {
           "hide_name": 0,
-          "bits": [ 34 ],
+          "bits": [ 32 ],
           "attributes": {
             "unused_bits": "0 "
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_I1": {
           "hide_name": 0,
-          "bits": [ 30 ],
+          "bits": [ 28 ],
           "attributes": {
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_SUM": {
           "hide_name": 0,
-          "bits": [ 31 ],
+          "bits": [ 29 ],
           "attributes": {
             "unused_bits": "0 "
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_I1": {
           "hide_name": 0,
-          "bits": [ 27 ],
+          "bits": [ 25 ],
           "attributes": {
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_CIN_ALU_COUT_SUM": {
           "hide_name": 0,
-          "bits": [ 28 ],
+          "bits": [ 26 ],
           "attributes": {
             "unused_bits": "0 "
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_I1": {
           "hide_name": 0,
-          "bits": [ 24 ],
+          "bits": [ 22 ],
           "attributes": {
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_CIN_ALU_COUT_SUM": {
           "hide_name": 0,
-          "bits": [ 25 ],
+          "bits": [ 23 ],
           "attributes": {
             "unused_bits": "0 "
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_I1": {
           "hide_name": 0,
-          "bits": [ 21 ],
+          "bits": [ 19 ],
           "attributes": {
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_CIN_ALU_COUT_SUM": {
           "hide_name": 0,
-          "bits": [ 22 ],
+          "bits": [ 20 ],
           "attributes": {
             "unused_bits": "0 "
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_COUT": {
           "hide_name": 0,
-          "bits": [ 18 ],
+          "bits": [ 16 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "binary2thermometer.sv:21.42-21.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29",
+            "src": "binary2thermometer.sv:16.42-16.57|/usr/local/bin/../share/yosys/gowin/arith_map.v:57.7-63.5|/usr/local/bin/../share/yosys/gowin/cells_sim.v:938.25-938.29",
             "unused_bits": "0 "
           }
         },
         "thermometer_OBUF_O_I_ALU_SUM_I0": {
           "hide_name": 0,
-          "bits": [ 19 ],
+          "bits": [ 17 ],
           "attributes": {
           }
         }

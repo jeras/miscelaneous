@@ -1,9 +1,9 @@
 #! /bin/bash
 
-PRJ=binary2thermometer
+PRJ=loop
 
 # test both implementations
-for imp in "POWER" "SHIFT"
+for imp in "ALWAYS" "GENERATE"
 do
     yosys --plugin slang --logfile ${PRJ}_${imp}.log -p \
     "read_slang ${PRJ}.sv --top ${PRJ} -G IMPLEMENTATION=\"${imp}\"; \

@@ -28,7 +28,7 @@ module tcb_tb #(
   tcb_man_prg man_prg (tcb);
 
   // subordinate
-  tcb_sub_prg sub_prg (tcb);
+  tcb_sub_prg sub_prg (clk, tcb);
 
 endmodule: tcb_tb
 
@@ -82,9 +82,10 @@ program tcb_man_prg (
 endprogram: tcb_man_prg
 
 program tcb_sub_prg (
+  input clk,
   tcb_if.sub_cb tcb
 );
-
+  default clocking cb @(posedge clk); endclocking
   logic [tcb.DAT-1:0] mem [256];
 
   task access (
@@ -92,7 +93,7 @@ program tcb_sub_prg (
   );
     tcb.cb_sub.rdy <= 1'b1;
     do begin
-      @tcb.cb_sub;
+      ##1;
     end while (~tcb.cb_sub.trn);
     tcb.cb_sub.rdy <= 1'b0;
     if (tcb.cb_sub.wen) begin
