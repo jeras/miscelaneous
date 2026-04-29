@@ -68,7 +68,6 @@ while [[ $# -gt 0 ]]; do
 done
 
 PRIMITIVES=${PDK}/libs.ref/${SCL}/verilog/primitives.v
-#CELLS=${PDK}/libs.ref/${SCL}/verilog/${SCL}.v
 CELLS="${CELLS:-${PDK}/libs.ref/${SCL}/verilog/${SCL}.v}"
 
 NETLIST=${RUN}/final/nl/pm32.nl.v
@@ -150,7 +149,7 @@ echo "================================================================"
 echo "== OpenSTA power estimation TCL script"
 echo "================================================================"
 
-cat > opensta_power.tcl <<EOF
+cat > opensta_power__${SCL}__${INTERCONNECT}__${CORNER}.tcl <<EOF
 read_liberty ${LIBERTY}
 read_verilog ${NETLIST}
 link_design pm32
@@ -159,5 +158,5 @@ read_spef ${SPEF}
 #set_power_activity -input -activity 0.1
 #set_power_activity -input_port rst -activity 0
 read_vcd -scope pm32_tb_sdf/dut pm32_tb_sdf.vcd
-report_power
+report_power -digits 6
 EOF
