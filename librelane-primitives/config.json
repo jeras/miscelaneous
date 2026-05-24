@@ -1,0 +1,18 @@
+{
+  "DESIGN_NAME": "synthesis_primitives",
+  "VERILOG_FILES": ["dir::synthesis_primitives.sv"],
+  "CLOCK_PERIOD": 25,
+  "CLOCK_PORT": "clk",
+  "IO_PIN_ORDER_CFG": "dir::pin_order.cfg",
+  "DESIGN_REPAIR_REMOVE_BUFFERS": false,
+  "DESIGN_REPAIR_BUFFER_INPUT_PORTS": false,
+  "DESIGN_REPAIR_BUFFER_OUTPUT_PORTS": false,
+  "pdk::sky130A": {
+    "MAX_FANOUT_CONSTRAINT": 6,
+    "FP_CORE_UTIL": 40,
+    "PL_TARGET_DENSITY_PCT": "expr::($FP_CORE_UTIL + 10.0)",
+    "scl::sky130_fd_sc_hd": {
+      "CLOCK_PERIOD": 15.0
+    }
+  }
+}
