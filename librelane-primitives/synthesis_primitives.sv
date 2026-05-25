@@ -22,6 +22,9 @@ module synthesis_primitives (
     input  logic [       16 -1:0] mux16_i,
     input  logic [$clog2(16)-1:0] mux16_s,
     output logic                  mux16_o,
+    // DELAY FLOP
+    input  logic flop_d,  // data input
+    output logic flop_q,  // data output
     // DELAY LATCH
     input  logic latch_d,  // data input
     input  logic latch_g,  // gate
@@ -34,6 +37,10 @@ module synthesis_primitives (
     assign mux4_o  =  mux4_i [mux4_s ];
     assign mux8_o  =  mux8_i [mux8_s ];
     assign mux16_o =  mux16_i[mux16_s];
+
+    // delay flop
+    always_ff @(posedge clk)
+    flop_q <= flop_d;
 
     // delay latch
     always_latch

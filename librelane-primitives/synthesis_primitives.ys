@@ -1,0 +1,32 @@
+# read Liberty
+#read_liberty -lib -ignore_miss_dir -setattr blackbox -setattr keep_hierarchy ~/VLSI/PDK/test-pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# read design
+read_verilog -sv synthesis_primitives.sv
+hierarchy -check -top synthesis_primitives
+
+# the high-level stuff
+proc; opt
+memory; opt
+fsm; opt
+
+flatten
+
+# mapping to internal cell library
+techmap
+#muxcover
+#pmuxtree
+
+#techmap -map sky130_fd_sc_hd_techmap.v
+
+dfflibmap -liberty ~/VLSI/PDK/test-pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# mapping logic to SCL
+#abc -liberty ~/VLSI/PDK/test-pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ~/VLSI/PDK/test-pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib -dont_use *mux4*
+
+# cleanup
+clean
+
+# write synthesized design
+write_verilog synth.v
