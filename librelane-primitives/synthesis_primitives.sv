@@ -26,9 +26,23 @@ module synthesis_primitives (
     input  logic flop_d,  // data input
     output logic flop_q,  // data output
     // DELAY LATCH
-    input  logic latch_d,  // data input
-    input  logic latch_g,  // gate
-    output logic latch_q   // data output
+    input  logic dlatch_p_d,   // data input
+    input  logic dlatch_p_g,   // gate
+    output logic dlatch_p_q,   // data output
+    // DELAY LATCH
+    input  logic dlatch_n_d,   // data input
+    input  logic dlatch_n_gn,  // gate
+    output logic dlatch_n_q,   // data output
+    // DELAY LATCH
+    input  logic dlatch_pn0_d,   // data input
+    input  logic dlatch_pn0_rn,  // reset
+    input  logic dlatch_pn0_g,   // gate
+    output logic dlatch_pn0_q,   // data output
+    // DELAY LATCH
+    input  logic dlatch_nn0_d,   // data input
+    input  logic dlatch_nn0_rn,  // reset
+    input  logic dlatch_nn0_gn,  // gate
+    output logic dlatch_nn0_q    // data output
 );
 
     // multiplexers
@@ -44,6 +58,20 @@ module synthesis_primitives (
 
     // delay latch
     always_latch
-    if (latch_g) latch_q <= latch_d;
+    if (dlatch_p_g) dlatch_p_q <= dlatch_p_d;
+
+    // delay latch
+    always_latch
+    if (~dlatch_n_gn) dlatch_n_q <= dlatch_n_d;
+
+    // delay latch
+    always_latch
+    if      (~dlatch_pn0_rn) dlatch_pn0_q <= 1'b0;
+    else if ( dlatch_pn0_g ) dlatch_pn0_q <= dlatch_pn0_d;
+
+    // delay latch
+    always_latch
+    if      (~dlatch_nn0_rn) dlatch_nn0_q <= 1'b0;
+    else if (~dlatch_nn0_gn) dlatch_nn0_q <= dlatch_nn0_d;
 
 endmodule: synthesis_primitives

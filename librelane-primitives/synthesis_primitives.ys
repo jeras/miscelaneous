@@ -9,6 +9,7 @@ hierarchy -check -top synthesis_primitives
 proc; opt
 memory; opt
 fsm; opt
+write_verilog proc.v
 
 flatten
 
@@ -17,7 +18,7 @@ techmap
 #muxcover
 #pmuxtree
 
-#techmap -map sky130_fd_sc_hd_techmap.v
+techmap -map ~/VLSI/PDK/test-pdk/sky130A/libs.tech/librelane/sky130_fd_sc_hd/latch_map.v
 
 dfflibmap -liberty ~/VLSI/PDK/test-pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 

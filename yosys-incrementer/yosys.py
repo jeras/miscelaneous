@@ -2,74 +2,104 @@ import subprocess
 
 from pyosys import libyosys as ys
 
-DUT = "incrementer"
-
-LIBERTY = "~/VLSI/PDK/test-pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib"
+#PRIMITIVES = "~/VLSI/PDK/test-pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/primitives.v"
+PRIMITIVES = "primitives.v"
+FUNCTIONAL = "~/VLSI/PDK/test-pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v"
+#FUNCTIONAL = "sky130_fd_sc_hd.v"
+LIBERTY    = "~/VLSI/PDK/test-pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib"
 DONTUSE = "-dont_use *clkinv* -dont_use *lpflow*"
 
-stepidx = 0
 
-def report (name: str):
-    global stepidx
-    stepname = f"{stepidx}_{name}"
-    ys.run_pass(f"dump")
-    ys.run_pass(f"stat")
-    ys.run_pass(f"write_verilog {stepname}.v")
-    ys.run_pass(f"write_json {stepname}.json")
-    subprocess.Popen(f'netlistsvg {stepname}.json -o {stepname}.svg', shell=True)
-    stepidx = stepidx + 1
+#for DUT in ["incrementer", "decrementer"]:
+for DUT in ["incrementer"]:
 
-# read design
-ys.run_pass(f"read_verilog -sv {DUT}.sv")
-ys.run_pass(f"hierarchy -check -top {DUT}")
+    stepidx = 0
 
-# the high-level stuff
-ys.run_pass(f"proc; opt")
-ys.run_pass(f"memory; opt")
-ys.run_pass(f"fsm; opt")
-report("proc")
+    def report (name: str):
+        global stepidx
+        stepname = f"reports/{DUT}_{stepidx}_{name}"
+        ys.run_pass(f"dump")
+        ys.run_pass(f"stat")
+        ys.run_pass(f"write_verilog {stepname}.v")
+        ys.run_pass(f"write_json {stepname}.json")
+        subprocess.Popen(f'netlistsvg {stepname}.json -o {stepname}.svg', shell=True)
+        stepidx = stepidx + 1
 
-ys.run_pass(f"flatten")
-ys.run_pass(f"simplemap; opt")
-report("smiplemap")
-#ys.run_pass(f"shell")
+    # read design
+    ys.run_pass(f"read_verilog -sv {DUT}.sv")
+    ys.run_pass(f"hierarchy -check -top {DUT}")
 
-ys.run_pass(f"alumacc; opt")
-report("alumacc")
-#ys.run_pass(f"shell")
+    # the high-level stuff
+    ys.run_pass(f"proc; opt")
+    ys.run_pass(f"memory; opt")
+    ys.run_pass(f"fsm; opt")
+    report("proc")
 
-# mapping to internal cell library
-ys.run_pass(f"techmap; opt")
-report("techmap")
-#ys.run_pass(f"shell")
+    ys.run_pass(f"flatten")
 
-#ys.run_pass(f"extract_fa -ha; opt")
-#report("extract_fa")
-#ys.run_pass(f"shell")
+    ys.run_pass(f"simplemap; opt")
+    report("simplemap")
+    ys.run_pass(f"shell")
 
-# technoloqy mapping to sky130 HD SCL
-#techmap -map latch_map.v
-#report("techmap_map")
+    # make a copy of the design before technology mapping
+    ys.run_pass(f"copy {DUT} {DUT}_orig")
+    # mapping to internal cell library
+    ys.run_pass(f"techmap -map rca_map.v; opt")
+    report("rca_map")
+#    ys.run_pass(f"shell")
 
-ys.run_pass(f"dfflibmap -liberty {LIBERTY}")
-report("dfflibmap")
-#ys.run_pass(f"shell")
+    ys.run_pass(f"alumacc; opt")
+    report("alumacc")
+#    ys.run_pass(f"shell")
 
-ys.run_pass(f"opt_merge;")
-ys.run_pass(f"dump; stat -tech cmos; write_verilog opt_merge.v")
-report("opt_merge")
-#ys.run_pass(f"shell")
+    # mapping to internal cell library
+    ys.run_pass(f"techmap; opt")
+    report("techmap")
+#    ys.run_pass(f"shell")
 
-# mapping logic to SCL
-ys.run_pass(f"abc -liberty {LIBERTY} {DONTUSE}")
-report("abc")
+    #ys.run_pass(f"extract_fa -ha; opt")
+    #report("extract_fa")
+    #ys.run_pass(f"shell")
 
-## cleanup
-#clean
-#
-## write synthesized design
-ys.run_pass(f"write_verilog netlist.v")
-ys.run_pass(f"write_json netlist.json")
+    # clock gating
+    ys.run_pass(f"clockgate -liberty {LIBERTY}")
+    report("clockgate")
+#    ys.run_pass(f"shell")
 
-# create SVG schematic
-subprocess.Popen('netlistsvg netlist.json -o netlist.svg', shell=True)
+    # flip-flop mapping
+    ys.run_pass(f"dfflibmap -liberty {LIBERTY}")
+    report("dfflibmap")
+#    ys.run_pass(f"shell")
+
+    ys.run_pass(f"opt_merge;")
+    report("opt_merge")
+#    ys.run_pass(f"shell")
+
+    # mapping logic to SCL
+    ys.run_pass(f"abc -liberty {LIBERTY} {DONTUSE}")
+    report("abc")
+
+    ## write synthesized design
+    ys.run_pass(f"write_verilog {DUT}_netlist.v")
+    ys.run_pass(f"write_json {DUT}_netlist.json")
+
+    #######################################
+    # equivalence check
+    #######################################
+
+#    ys.run_pass(f"read_verilog -D FUNCTIONAL -sv {PRIMITIVES} {FUNCTIONAL}")
+    ys.run_pass(f"read_verilog -D FUNCTIONAL -D UNIT_DELAY -sv {PRIMITIVES} {FUNCTIONAL}")
+#    ys.run_pass(f"read_liberty {LIBERTY}")
+
+
+    # create a miter circuit to test equivalence
+    ys.run_pass(f"miter -equiv -make_assert -make_outputs {DUT}_orig {DUT} miter")
+    ys.run_pass(f"flatten miter")
+    # run equivalence check
+    ys.run_pass(f"sat -verify -prove-asserts -show-inputs -show-outputs miter")
+
+    # cleanup
+    clean
+
+    # create SVG schematic
+    subprocess.Popen('netlistsvg {DUT}_netlist.json -o {DUT}_netlist.svg', shell=True)

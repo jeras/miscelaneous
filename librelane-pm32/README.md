@@ -27,6 +27,8 @@ To rebuild a local version of the library use:
 
 ```sh
 ciel build --pdk-family sky130 e11f4c42613de5269371782324cca97762f67401 --use-repo-at open_pdks=../../PDK/open_pdks/ --use-repo-at sky130_fd_sc_hdll=../../PDK/skywater-pdk-libs-sky130_fd_sc_hdll/ -l all
+ciel build --pdk-family sky130 e11f4c42613de5269371782324cca97762f67401 --use-repo-at open_pdks=../../PDK/open_pdks/ -l all
+ciel build --pdk-family ihp-sg13g2 5048f974d267530ca038e208cab183ee4e548c9e --use-repo-at open_pdks=../../IHP-Open-PDK
 ```
 
 It might be better to compile with `-l sky130_fd_sc_hdll` and without (to get defaults) to speed up the build.
