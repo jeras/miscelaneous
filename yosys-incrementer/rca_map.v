@@ -25,15 +25,20 @@ module librelane_ha (A, B, X, Y);
 	(* force_downto *) 
 	output [WIDTH-1:0] X, Y;
 
-	sky130_fd_sc_hd__ha_1 HA [WIDTH-1:0] (
-		.COUT(X),
-		.SUM(Y),
-		.A(A),
-		.B(B)
-	);
+	genvar i;
+	generate
+	for (i=0; i<WIDTH; i++) begin
+		sky130_fd_sc_hd__ha_1 HA (
+			.COUT(X),
+			.SUM(Y),
+			.A(A),
+			.B(B)
+		);
+	end
+	endgenerate
 endmodule
 
-(* techmap_celltype = "$fa" *)
+(* techmap_celltype = "$fa1" *)
 module librelane_fa (A, B, C, X, Y);
 	parameter WIDTH = 1;
 
@@ -124,7 +129,7 @@ module librelane_rca_add (A, B, Y);
 					end
 				end
 			end else begin
-				\$fa #(.WIDTH(1)) FA (.A(AA[i]), .B(BB[i]), .C(C[i]), .X(CO[i]), .Y(Y[i]));
+				\$fa1 #(.WIDTH(1)) FA (.A(AA[i]), .B(BB[i]), .C(C[i]), .X(CO[i]), .Y(Y[i]));
 			end
 		end
 	endgenerate
@@ -200,7 +205,7 @@ module librelane_rca_sub (A, B, Y);
 					end
 				end
 			end else begin
-				\$fa #(.WIDTH(1)) FA (.A(AA[i]), .B(BB[i]), .C(C[i]), .X(CO[i]), .Y(Y[i]));
+				\$fa1 #(.WIDTH(1)) FA (.A(AA[i]), .B(BB[i]), .C(C[i]), .X(CO[i]), .Y(Y[i]));
 			end
 		end
 	endgenerate
@@ -278,7 +283,7 @@ module librelane_rca_alu (A, B, CI, BI, X, Y, CO);
 					end
 				end
 			end else begin
-				\$fa #(.WIDTH(1)) FA (.A(AA[i]), .B(BB[i]), .C(C[i]), .X(CO[i]), .Y(Y[i]));
+				\$fa1 #(.WIDTH(1)) FA (.A(AA[i]), .B(BB[i]), .C(C[i]), .X(CO[i]), .Y(Y[i]));
 			end
 		end
 	endgenerate
