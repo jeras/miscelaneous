@@ -35,51 +35,38 @@ this are probably the first latches I wrote intentionally.
 
 ## Cell mapping tables
 
-| world | tech         |`C`|`E`|`S`|`R`|`Q` |        sky130 HD/HDLL | sky130 HS/MS/LS | sky130 HVL |
-|-------|--------------|---|---|---|---|----|--------------------|------------|
+| world | tech         |`C`|`E`|`S`|`R`|`Q` | sky130 HD | sky130 HDLL | sky130 HS/MS/LS | sky130 HVL | gf180mcu mcu7t5v0
+|-------|--------------|---|---|---|---|----|-----------|-------------|-----------------|------------|
 | `$ff` | `$_FF_`      |     
 |       | `$_DFFSR_
-|       | `$_DFF_P_`   |`P`|   |   |   |`P` | `sky130_fd_sc_hd__dfxtp`  | `sky130_fd_sc_*__dfxtp`  | `sky130_fd_sc_hvl__dfxtp`  |
-|       | `$_DFF_N_`   |`N`|   |   |   |*   |                           |                          |                            |
-|       | `$_DFFE_PP_` |`P`|`P`|   |   |`P` | `sky130_fd_sc_hd__edfxtp` | `sky130_fd_sc_*__edfxtp` | `sky130_fd_sc_hvl__edfxtp` |
-|       |              |`P`|   |   |   |`PN`| `sky130_fd_sc_hd__dfxbp`  | `sky130_fd_sc_*__dfxbp`  | `sky130_fd_sc_hvl__dfxbp`  |
-|       |              |`P`|`P`|   |   |`PN`| `sky130_fd_sc_hd__edfxbp` | `sky130_fd_sc_*__edfxbp` | `sky130_fd_sc_hvl__edfxbp` |
-|       | `$_DFF_NN0_` |`N`|   |   |`N`|`P` | `sky130_fd_sc_hd__dfrtn`  | `sky130_fd_sc_*__dfrtn`  | `sky130_fd_sc_hvl__dfrtn`  | 
-|       | `$_DFF_PN0_` |`P`|   |   |`N`|`P` | `sky130_fd_sc_hd__dfrtp`  | `sky130_fd_sc_*__dfrtp`  | `sky130_fd_sc_hvl__dfrtp`  | 
-|       |              |`P`|   |   |`N`|`PN`| `sky130_fd_sc_hd__dfrbp`  | `sky130_fd_sc_*__dfrbp`  | `sky130_fd_sc_hvl__dfrbp`  | 
-|       | `$_DFF_PN1_` |`P`|   |`N`|   |`P` | `sky130_fd_sc_hd__dfstp`  | `sky130_fd_sc_*__dfstp`  | `sky130_fd_sc_hvl__dfstp`  | 
-|       |              |`P`|   |`N`|   |`PN`| `sky130_fd_sc_hd__dfsbp`  | `sky130_fd_sc_*__dfsbp`  | `sky130_fd_sc_hvl__dfsbp`  | 
+|       | `$_DFF_P_`   |`P`|   |   |   |`P` | `dfxtp`   |             | `dfxtp`         | `dfxtp`    |
+|       | `$_DFF_N_`   |`N`|   |   |   |*   |           |             |                 |            |
+|       | `$_DFFE_PP_` |`P`|`P`|   |   |`P` | `edfxtp`  |             | `edfxtp`        |            |
+|       |              |`P`|   |   |   |`PN`| `dfxbp`   |             | `dfxbp`         | `dfxbp`    |
+|       |              |`P`|`P`|   |   |`PN`| `edfxbp`  |             | `edfxbp`        |            |
+|       | `$_DFF_NN0_` |`N`|   |   |`N`|`P` | `dfrtn`   |             | `dfrtn`         |            | 
+|       | `$_DFF_PN0_` |`P`|   |   |`N`|`P` | `dfrtp`   | `dfrtp`     | `dfrtp`         | `dfrtp`    | 
+|       |              |`P`|   |   |`N`|`PN`| `dfrbp`   |             | `dfrbp`         |            | 
+|       | `$_DFF_PN1_` |`P`|   |`N`|   |`P` | `dfstp`   | `dfstp`     | `dfstp`         | `dfstp`    | 
+|       |              |`P`|   |`N`|   |`PN`| `dfsbp`   |             | `dfsbp`         | `dfsbp`    | 
 
+|       | ?            |`P`|   |`N`|`N`|`PN`| `dfbbn`   |             | `dfbbn`         |            | 
+|       | ?            |`N`|   |`N`|`N`|`PN`| `dfbbp`   |             | `dfbbp`         |            | 
+
+| world     | tech            |`G`|`E`|`S`|`R`|`Q` | sky130 HD | sky130 HDLL | sky130 HS/MS/LS | sky130 HVL | gf180mcu `mcu7t5v0`/`mcu9t5v0` |
+|-----------|-----------------|---|---|---|---|----|-----------|-------------|-----------------|------------|--------------------------------|
+| `$dlatch` | `$_DLATCH_P_`   |`P`|   |   |   |`P` |                                                        | `latq`                         |
+| `$dlatch` | `$_DLATCH_PN0_` |`P`|   |   |`N`|`P` |                                                        | `latrnq`                       |
+| `$dlatch` | `$_DLATCH_PN1_` |`P`|   |`N`|   |`P` |                                                        | `latsnq`                       |
+| `$dlatch` | `$_DLATCH_PNN_` |`P`|   |`N`|`N`|`P` |                                                        | `latrsnq`                      |
 
 |       | `$_DFF_P_`   |`P`|   |   |   | `sky130_fd_sc_hd__` | `sky130_fd_sc_*__` | `sky130_fd_sc_hvl__` | 
 
-sky130_fd_sc_hd__dfbbn_1
-sky130_fd_sc_hd__dfbbp_1
-dfrbp_1
-sky130_fd_sc_hd__dfrtn_1
-dfrtp_1
-dfsbp_1
-dfstp_1
-dfxbp_1
-dfxtp_1
-
-edfxbp_1
-edfxtp_1
-
-sky130_fd_sc_hd__dlrbn_1
-sky130_fd_sc_hd__dlrbp_1
-sky130_fd_sc_hd__dlrtn_1
-sky130_fd_sc_hd__dlrtp_1
-sky130_fd_sc_hd__dlxbn_1
-sky130_fd_sc_hd__dlxbp_1
-sky130_fd_sc_hd__dlxtn_1
-sky130_fd_sc_hd__dlxtp_1
-
-HVL
-
-dfrbp/
-dfrtp/
-dfsbp/
-dfstp/
-dfxbp/
-dfxtp/
+gf180mcu_fd_sc_mcu7t5v0__dffnq_1
+gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1
+gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_1
+gf180mcu_fd_sc_mcu7t5v0__dffnsnq_1
+gf180mcu_fd_sc_mcu7t5v0__dffq_1
+gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+gf180mcu_fd_sc_mcu7t5v0__dffrsnq_1
+gf180mcu_fd_sc_mcu7t5v0__dffsnq_1

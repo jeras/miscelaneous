@@ -29,11 +29,16 @@ module incrementer #(
 
     assign ena = inc | load;
 
+    logic [W-1:0] fix;
+
+    assign fix = inc;
+
     always_ff @(posedge clk, posedge rst)
     if (rst)  cnt <= '0;
     else if (ena) begin
         if (load)  cnt <= val;
         else       cnt <= cnt + inc;
+//        else       cnt <= cnt + fix;
     end
 
 //    always_ff @(posedge clk, posedge rst)
