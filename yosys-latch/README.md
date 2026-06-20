@@ -35,38 +35,35 @@ this are probably the first latches I wrote intentionally.
 
 ## Cell mapping tables
 
-| world | tech         |`C`|`E`|`S`|`R`|`Q` | sky130 HD | sky130 HDLL | sky130 HS/MS/LS | sky130 HVL | gf180mcu mcu7t5v0
-|-------|--------------|---|---|---|---|----|-----------|-------------|-----------------|------------|
-| `$ff` | `$_FF_`      |     
-|       | `$_DFFSR_
-|       | `$_DFF_P_`   |`P`|   |   |   |`P` | `dfxtp`   |             | `dfxtp`         | `dfxtp`    |
-|       | `$_DFF_N_`   |`N`|   |   |   |*   |           |             |                 |            |
-|       | `$_DFFE_PP_` |`P`|`P`|   |   |`P` | `edfxtp`  |             | `edfxtp`        |            |
-|       |              |`P`|   |   |   |`PN`| `dfxbp`   |             | `dfxbp`         | `dfxbp`    |
-|       |              |`P`|`P`|   |   |`PN`| `edfxbp`  |             | `edfxbp`        |            |
-|       | `$_DFF_NN0_` |`N`|   |   |`N`|`P` | `dfrtn`   |             | `dfrtn`         |            | 
-|       | `$_DFF_PN0_` |`P`|   |   |`N`|`P` | `dfrtp`   | `dfrtp`     | `dfrtp`         | `dfrtp`    | 
-|       |              |`P`|   |   |`N`|`PN`| `dfrbp`   |             | `dfrbp`         |            | 
-|       | `$_DFF_PN1_` |`P`|   |`N`|   |`P` | `dfstp`   | `dfstp`     | `dfstp`         | `dfstp`    | 
-|       |              |`P`|   |`N`|   |`PN`| `dfsbp`   |             | `dfsbp`         | `dfsbp`    | 
+| world    | tech           |`C`|`E`|`S`|`R`|`Q`| sky130 HD | sky130 HDLL | sky130 [HML]S | sky130 LP | sky130 HVL | gf180mcu [79]t |
+|----------|----------------|---|---|---|---|---|-----------|-------------|---------------|-----------|------------|----------------|
+| `$dff`   | `$_DFF_P_`     |`P`|   |   |   |`P`| `dfxtp`   |             | `dfxtp`       | `dfxtp`   | `dfxtp`    | `dffq`         |
+| `$dff`   | `$_DFF_N_`     |`N`|   |   |   |`P`|           |             |               |           |            | `dffnq`        |
+| `$dffe`  | `$_DFFE_PP_`   |`P`|`P`|   |   |`P`| `edfxtp`  |             | `edfxtp`      |           |            |                |
+| `$dff`   | `$_DFF_P_`     |`P`|   |   |   |`C`| `dfxbp`   |             | `dfxbp`       | `dfxbp`   | `dfxbp`    |                |
+| `$dffe`  | `$_DFFE_PP_`   |`P`|`P`|   |   |`C`| `edfxbp`  |             | `edfxbp`      | `edfxbp`  |            |                |
+| `$dffsr` | `$_DFF_NN0_`   |`N`|   |   |`N`|`P`| `dfrtn`   |             | `dfrtn`       | `dfrtn`   |            |                |
+| `$dffsr` | `$_DFF_PN0_`   |`P`|   |   |`N`|`P`| `dfrtp`   | `dfrtp`     | `dfrtp`       | `dfrtp`   | `dfrtp`    | `dffrnq`       |
+| `$dffsr` |                |`P`|   |   |`N`|`C`| `dfrbp`   |             | `dfrbp`       | `dfrbp`   |            |                |
+| `$dffsr` | `$_DFF_PN1_`   |`P`|   |`N`|   |`P`| `dfstp`   | `dfstp`     | `dfstp`       | `dfstp`   | `dfstp`    | `dffsnq`       |
+| `$dffsr` |                |`P`|   |`N`|   |`C`| `dfsbp`   |             | `dfsbp`       | `dfsbp`   | `dfsbp`    |                |
+| `$dffsr` | `$_DFF_NN0_`   |`N`|   |   |`N`|`P`|           |             |               |           |            | `dffnrnq`      |
+| `$dffsr` | `$_DFF_NN1_`   |`N`|   |`N`|   |`P`|           |             |               |           |            | `dffnsnq`      |
+| `$dffsr` | `$_DFFSR_NNN_` |`N`|   |`N`|`N`|`C`| `dfbbn`   |             | `dfbbn`       | `dfbbn`   |            |                |
+| `$dffsr` | `$_DFFSR_PNN_` |`P`|   |`N`|`N`|`C`| `dfbbp`   |             | `dfbbp`       | `dfbbp`   |            |                |
+| `$dffsr` | `$_DFFSR_PNN_` |`P`|   |`N`|`N`|`P`|           |             |               |           |            | `dffrsnq`      |
+| `$dffsr` | `$_DFFSR_NNN_` |`N`|   |`N`|`N`|`P`|           |             |               |           |            | `dffnrsnq`     |
 
-|       | ?            |`P`|   |`N`|`N`|`PN`| `dfbbn`   |             | `dfbbn`         |            | 
-|       | ?            |`N`|   |`N`|`N`|`PN`| `dfbbp`   |             | `dfbbp`         |            | 
 
-| world     | tech            |`G`|`E`|`S`|`R`|`Q` | sky130 HD | sky130 HDLL | sky130 HS/MS/LS | sky130 HVL | gf180mcu `mcu7t5v0`/`mcu9t5v0` |
-|-----------|-----------------|---|---|---|---|----|-----------|-------------|-----------------|------------|--------------------------------|
-| `$dlatch` | `$_DLATCH_P_`   |`P`|   |   |   |`P` |                                                        | `latq`                         |
-| `$dlatch` | `$_DLATCH_PN0_` |`P`|   |   |`N`|`P` |                                                        | `latrnq`                       |
-| `$dlatch` | `$_DLATCH_PN1_` |`P`|   |`N`|   |`P` |                                                        | `latsnq`                       |
-| `$dlatch` | `$_DLATCH_PNN_` |`P`|   |`N`|`N`|`P` |                                                        | `latrsnq`                      |
-
-|       | `$_DFF_P_`   |`P`|   |   |   | `sky130_fd_sc_hd__` | `sky130_fd_sc_*__` | `sky130_fd_sc_hvl__` | 
-
-gf180mcu_fd_sc_mcu7t5v0__dffnq_1
-gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1
-gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_1
-gf180mcu_fd_sc_mcu7t5v0__dffnsnq_1
-gf180mcu_fd_sc_mcu7t5v0__dffq_1
-gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
-gf180mcu_fd_sc_mcu7t5v0__dffrsnq_1
-gf180mcu_fd_sc_mcu7t5v0__dffsnq_1
+| world       | tech            |`G`|`E`|`S`|`R`|`Q`| sky130 HD | sky130 HDLL | sky130 [HML]S | sky130 LP | sky130 HVL | gf180mcu [79]t |
+|-------------|-----------------|---|---|---|---|---|-----------|-------------|---------------|-----------|------------|----------------|
+| `$dlatch`   | `$_DLATCH_P_`   |`P`|   |   |   |`P`| `dlxtp`   |             | `dlxtp`       | `dlxtp`   | `dlxtp`    | `latq`         |
+| `$dlatch`   | `$_DLATCH_N_`   |`N`|   |   |   |`P`| `dlxtn`   | `dlxtn`     | `dlxtn`       | `dlxtn`   |            |                |
+| `$dlatch`   | `$_DLATCH_P_`   |`P`|   |   |   |`C`| `dlxbp`   |             | `dlxbp`       | `dlxbp`   |            |                |
+| `$dlatch`   | `$_DLATCH_N_`   |`N`|   |   |   |`C`| `dlxbn`   |             | `dlxbn`       | `dlxbn`   |            |                |
+| `$dlatchsr` | `$_DLATCH_PN0_` |`P`|   |   |`N`|`P`| `dlrtp`   | `dlrtp`     | `dlrtp`       | `dlrtp`   |            | `latrnq`       |
+| `$dlatchsr` | `$_DLATCH_NN0_` |`N`|   |   |`N`|`P`| `dlrtn`   | `dlrtn`     | `dlrtn`       | `dlrtn`   |            |                |
+| `$dlatchsr` | `$_DLATCH_PN0_` |`P`|   |   |`N`|`C`| `dlrbp`   |             | `dlrbp`       | `dlrbp`   |            |                |
+| `$dlatchsr` | `$_DLATCH_NN0_` |`N`|   |   |`N`|`C`| `dlrbn`   |             | `dlrbn`       | `dlrbn`   |            |                |
+| `$dlatchsr` | `$_DLATCH_PN1_` |`P`|   |`N`|   |`P`|           |             |               |           |            | `latsnq`       |
+| `$dlatchsr` | `$_DLATCH_PNN_` |`P`|   |`N`|`N`|`P`|           |             |               |           |            | `latrsnq`      |
