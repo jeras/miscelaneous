@@ -55,15 +55,15 @@ this are probably the first latches I wrote intentionally.
 | `$dffsr` | `$_DFFSR_NNN_` |`N`|   |`N`|`N`|`P`|           |             |               |           |            | `dffnrsnq`     |            |
 
 
-| world       | tech            |`G`|`E`|`S`|`R`|`Q`| sky130 HD | sky130 HDLL | sky130 [HML]S | sky130 LP | sky130 HVL | gf180mcu [79]t | ihp-sg13g2 |
-|-------------|-----------------|---|---|---|---|---|-----------|-------------|---------------|-----------|------------|----------------|------------|
-| `$dlatch`   | `$_DLATCH_P_`   |`P`|   |   |   |`P`| `dlxtp`   |             | `dlxtp`       | `dlxtp`   | `dlxtp`    | `latq`         | `dlhq`     |
-| `$dlatch`   | `$_DLATCH_N_`   |`N`|   |   |   |`P`| `dlxtn`   | `dlxtn`     | `dlxtn`       | `dlxtn`   |            |                |            |
-| `$dlatch`   | `$_DLATCH_P_`   |`P`|   |   |   |`C`| `dlxbp`   |             | `dlxbp`       | `dlxbp`   |            |                |            |
-| `$dlatch`   | `$_DLATCH_N_`   |`N`|   |   |   |`C`| `dlxbn`   |             | `dlxbn`       | `dlxbn`   |            |                |            |
-| `$dlatchsr` | `$_DLATCH_PN0_` |`P`|   |   |`N`|`P`| `dlrtp`   | `dlrtp`     | `dlrtp`       | `dlrtp`   |            | `latrnq`       | `dlhrq`    |
-| `$dlatchsr` | `$_DLATCH_NN0_` |`N`|   |   |`N`|`P`| `dlrtn`   | `dlrtn`     | `dlrtn`       | `dlrtn`   |            |                | `dllrq`    |
-| `$dlatchsr` | `$_DLATCH_PN0_` |`P`|   |   |`N`|`C`| `dlrbp`   |             | `dlrbp`       | `dlrbp`   |            |                | `dlhr`     |
-| `$dlatchsr` | `$_DLATCH_NN0_` |`N`|   |   |`N`|`C`| `dlrbn`   |             | `dlrbn`       | `dlrbn`   |            |                | `dllr`     |
-| `$dlatchsr` | `$_DLATCH_PN1_` |`P`|   |`N`|   |`P`|           |             |               |           |            | `latsnq`       |            |
-| `$dlatchsr` | `$_DLATCH_PNN_` |`P`|   |`N`|`N`|`P`|           |             |               |           |            | `latrsnq`      |            |
+| world       | tech              |`G`|`S`|`R`|`Q`| sky130 HD | sky130 HDLL | sky130 [HML]S | sky130 LP | sky130 HVL | gf180mcu [79]t | ihp-sg13g2 |
+|-------------|-------------------|---|---|---|---|-----------|-------------|---------------|-----------|------------|----------------|------------|
+| `$dlatch`   | `$_DLATCH_P_`     |`P`|   |   |`P`| `dlxtp`   |             | `dlxtp`       | `dlxtp`   | `dlxtp`    | `latq`         | `dlhq`     |
+| `$dlatch`   | `$_DLATCH_N_`     |`N`|   |   |`P`| `dlxtn`   | `dlxtn`     | `dlxtn`       | `dlxtn`   |            |                |            |
+| `$dlatch`   | `$_DLATCH_P_`     |`P`|   |   |`C`| `dlxbp`   |             | `dlxbp`       | `dlxbp`   |            |                |            |
+| `$dlatch`   | `$_DLATCH_N_`     |`N`|   |   |`C`| `dlxbn`   |             | `dlxbn`       | `dlxbn`   |            |                |            |
+| `$dlatchsr` | `$_DLATCH_PN0_`   |`P`|   |`N`|`P`| `dlrtp`   | `dlrtp`     | `dlrtp`       | `dlrtp`   |            | `latrnq`       | `dlhrq`    |
+| `$dlatchsr` | `$_DLATCH_NN0_`   |`N`|   |`N`|`P`| `dlrtn`   | `dlrtn`     | `dlrtn`       | `dlrtn`   |            |                | `dllrq`    |
+| `$dlatchsr` | `$_DLATCH_PN0_`   |`P`|   |`N`|`C`| `dlrbp`   |             | `dlrbp`       | `dlrbp`   |            |                | `dlhr`     |
+| `$dlatchsr` | `$_DLATCH_NN0_`   |`N`|   |`N`|`C`| `dlrbn`   |             | `dlrbn`       | `dlrbn`   |            |                | `dllr`     |
+| `$dlatchsr` | `$_DLATCH_PN1_`   |`P`|`N`|   |`P`|           |             |               |           |            | `latsnq`       |            |
+| `$dlatchsr` | `$_DLATCHSR_PNN_` |`P`|`N`|`N`|`P`|           |             |               |           |            | `latrsnq`      |            |
