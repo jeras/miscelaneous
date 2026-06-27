@@ -5,14 +5,14 @@ hierarchy -check -top yosys_latch
 # the high-level stuff
 proc; opt
 stat
-#memory; opt
-#fsm; opt
-#
-#
-#flatten
-#
-## mapping to internal cell library
-#techmap; opt
+memory; opt
+fsm; opt
+
+
+flatten
+
+# mapping to internal cell library
+techmap; opt
 #dump
 #write_verilog techmap.v
 
@@ -23,8 +23,8 @@ stat -tech cmos
 #dump
 #write_verilog techmap_map.v
 
-#dfflibmap -liberty ~/VLSI/PDK/test-pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-#
+dfflibmap -liberty ~/VLSI/PDK/test-pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib -dont_use *inputiso*
+
 ## mapping logic to SCL
 #abc -liberty ~/VLSI/PDK/test-pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 ##abc -liberty ~/VLSI/PDK/test-pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib -dont_use *mux4*
