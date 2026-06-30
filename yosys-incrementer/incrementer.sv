@@ -15,47 +15,9 @@
 module incrementer #(
     parameter int unsigned W = 8
 )(
-    // system signals
-    input  logic clk,
-    input  logic rst,
-    // incrementer signals
-    input  logic         load,
     input  logic         inc,
     input  logic [W-1:0] val,
-    output logic [W-1:0] cnt
+    output logic [W-1:0] sum
 );
-
-    logic ena;
-
-    assign ena = inc | load;
-
-    logic [W-1:0] fix;
-
-    assign fix = inc;
-
-    always_ff @(posedge clk, posedge rst)
-    if (rst)  cnt <= '0;
-    else if (ena) begin
-        if (load)  cnt <= val;
-        else       cnt <= cnt + inc;
-//        else       cnt <= cnt + fix;
-    end
-
-//    always_ff @(posedge clk, posedge rst)
-//    if (rst)  cnt <= '0;
-//    else if (ena) begin
-//        if (load)      cnt <= val;
-//        else if (inc)  cnt <= cnt + 'd1;
-//    end
-
-//    always_ff @(posedge clk, posedge rst)
-//    if (rst)  cnt <= '0;
-//    else if (load) cnt <= val;
-//    else if (inc)  cnt <= cnt + 'd1;
-
-//    always_ff @(posedge clk, posedge rst)
-//    if (rst)  cnt <= '0;
-//    else if (load) cnt <= val;
-//    else           cnt <= cnt + inc;
-
+    assign sum = val + W'(inc);
 endmodule: incrementer
