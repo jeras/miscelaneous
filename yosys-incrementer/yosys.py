@@ -10,9 +10,9 @@ LIBERTY    = "~/VLSI/PDK/test-pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd
 DONTUSE = "-dont_use *clkinv* -dont_use *lpflow*"
 
 #for DUT in ["incrementer", "decrementer"]:
-#for DUT in ["adder"]:
+for DUT in ["adder"]:
 #for DUT in ["riscv_alu"]:
-for DUT in ["incrementer"]:
+#for DUT in ["incrementer"]:
 
     stepidx = 0
 
@@ -73,8 +73,14 @@ for DUT in ["incrementer"]:
     ys.run_pass(f"show -prefix alumacc_opt_expr {DUT}")
 
 
-    ys.run_pass(f"techmap -map rca_map.v")
-    ys.run_pass(f"show -prefix techmap_map {DUT}")
+    ys.run_pass(f"techmap -map alu_map.v")
+    ys.run_pass(f"show -prefix techmap_alu_map {DUT}")
+    ys.run_pass(f"opt")
+    ys.run_pass(f"show -prefix techmap_alu_map_opt {DUT}")
+    ys.run_pass(f"techmap -map fa_map.v")
+    ys.run_pass(f"show -prefix techmap_fa_map {DUT}")
+    ys.run_pass(f"opt")
+    ys.run_pass(f"show -prefix techmap_fa_map_opt {DUT}")
 
 #    # mapping to internal cell library
 #    ys.run_pass(f"techmap")
