@@ -43,6 +43,13 @@ module librelane_fa (
 		.A    (A),
 		.B    (B)
 	);
+//	sky130_fd_sc_hd__fah_1 FA (
+//		.COUT (X),
+//		.SUM  (Y),
+//		.CI  (C),
+//		.A    (A),
+//		.B    (B)
+//	);
 endmodule
 
 //module \$fa (A, B, C, X, Y);
@@ -59,6 +66,7 @@ endmodule
 //
 //endmodule
 
+//(* techmap_wrap = "opt" *)
 (* techmap_celltype = "$fa" *)
 module \$fa (A, B, C, X, Y);
 	parameter WIDTH = 1;

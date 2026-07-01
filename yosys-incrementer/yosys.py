@@ -10,9 +10,9 @@ LIBERTY    = "~/VLSI/PDK/test-pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd
 DONTUSE = "-dont_use *clkinv* -dont_use *lpflow*"
 
 #for DUT in ["incrementer", "decrementer"]:
-for DUT in ["adder"]:
+#for DUT in ["adder"]:
 #for DUT in ["riscv_alu"]:
-#for DUT in ["incrementer"]:
+for DUT in ["incrementer"]:
 
     stepidx = 0
 
