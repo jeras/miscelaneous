@@ -1,0 +1,10 @@
+#read_verilog -sv reduceor.sv
+read_verilog -sv prefixor.sv
+#read_verilog -sv alu.sv
+proc
+#opt -full
+opt_reduce
+#simplemap
+techmap
+opt
+show
