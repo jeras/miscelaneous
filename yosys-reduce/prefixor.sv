@@ -12,5 +12,8 @@ module prefixor #(
 //    end
 
     assign por_o = vec_i | {por_o[WIDTH-2:0], 1'b0};
+//  assign por_o = vec_i | (por_o << 1);
+
+//    assign por_o = vec_i | ((por_o & tmp) << 1);
 
 endmodule

@@ -1,10 +1,11 @@
-#read_verilog -sv reduceor.sv
-read_verilog -sv prefixor.sv
+#read_verilog -debug -dump_rtlil -sv reduceor.sv
+read_verilog -debug -dump_rtlil -sv prefixor.sv
 #read_verilog -sv alu.sv
-proc
-#opt -full
-opt_reduce
-#simplemap
-techmap
-opt
-show
+
+#proc
+##opt -full
+#opt_reduce
+##simplemap
+#techmap
+#opt
+#show
