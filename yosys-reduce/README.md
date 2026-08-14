@@ -123,7 +123,7 @@ module \$pmux (A, B, S, Y);
     wire [$clog2(S_WIDTH)-1:0] BIN;  // binary encoded select
     
     // parallel prefix OR transforms the priority select into a thermometer encoded signal
-    assign TER = \$reduce_or(S);
+    assign TER = \$prefix_or(S);
     // bitwise OR between priority select and shifted thermometer select results in one-hot select
     assign OHT = S & (TER << 1);
     // an encoder (OR type) converts a one-hot vector into the index of the hot input
@@ -137,6 +137,7 @@ endmodule
 ```
 
 ### Mapping priority to thermometer and one-hot conversion
+
 
 
 ### Magnitude comparator
