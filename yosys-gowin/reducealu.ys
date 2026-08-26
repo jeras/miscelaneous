@@ -15,63 +15,21 @@ endmodule
 
 EOT
 
-#read_verilog -sv gowin/CLS.v
-
 copy top top_unmapped
-#design -save top_unmapped
 
-#equiv_opt -assert techmap -map gowin/reducealu.v -map gowin/CLS.v
+#equiv_opt -assert techmap -map gowin/reducealu.v -map gowin/CLS.v top
 
-#design -load top_unmapped
 techmap -map gowin/reducealu.v -map gowin/CLS.v top
 clean
 
 #select -module top -assert-count 8 t:CLS
 
-##################################################################
-
-#read_verilog -sv gowin/CLS.v
-show -stretch top
-
-select -list
+#show -stretch top
+#select -list
 
 flatten
 opt_clean -purge
 miter -equiv -make_assert -flatten top_unmapped top miter
-
-# Prove that this is equivalent
 sat -verify -prove-asserts -set-def-inputs -show-public miter
-
-design -reset
-
-exit
-##################################################################
-
-read_verilog -sv -icells <<EOT
-
-module top(input [32-1:0] A, output Y);
-  \$reduce_and #(
-    .A_SIGNED(32'd0),
-    .A_WIDTH(32'd32),
-    .Y_WIDTH(32'd1)
-  ) uut (
-    .A(A),
-    .Y(Y)
-  );
-endmodule
-
-EOT
-
-read_verilog -sv gowin/CLS.v
-
-design -save orig
-
-equiv_opt -assert techmap -map gowin/reducealu.v
-
-design -load orig
-techmap -map gowin/reducealu.v
-clean
-
-select -assert-count 8 t:CLS
 
 design -reset

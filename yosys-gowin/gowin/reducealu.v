@@ -1,5 +1,5 @@
-(* techmap_celltype = "$reduce_and $reduce_or" *)
-module \$reduce_or (A, Y);
+(* techmap_celltype = "$reduce_and" *)
+module \$reduce_and (A, Y);
 
     parameter A_SIGNED = 0;
     parameter A_WIDTH = 0;
@@ -14,9 +14,7 @@ module \$reduce_or (A, Y);
     localparam CC_WIDTH = (A_WIDTH + 3) / 4;
     localparam AA_WIDTH = CC_WIDTH * 4;
 
-    localparam [16-1:0] LUT = (_TECHMAP_CELLTYPE_ == "$reduce_or")  ? 16'b1111_1111_1111_1110
-                            : (_TECHMAP_CELLTYPE_ == "$reduce_and") ? 16'b1000_0000_0000_0000
-                            :                                         16'bxxxx_xxxx_xxxx_xxxx;
+    localparam [16-1:0] LUT = 16'b1000_0000_0000_0000;
 
     wire [AA_WIDTH-1:0] AA;
     wire [CC_WIDTH  :0] CC;
@@ -39,11 +37,6 @@ module \$reduce_or (A, Y);
 	    );
     end endgenerate
 
-    generate case (_TECHMAP_CELLTYPE_)
-        "$reduce_or":
-            assign Y = CC[CC_WIDTH];
-        "$reduce_and":
-            assign Y = CC[CC_WIDTH];
-    endcase endgenerate
+    assign Y = CC[CC_WIDTH];
 
 endmodule
