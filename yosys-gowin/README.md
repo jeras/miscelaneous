@@ -80,3 +80,23 @@ While not great, it might still outperform a multi layer tree structure in the F
 ## $reduce_xor
 
 As expected, there seems to be no way to implement an XOR chain using ALU cells.
+
+parameter int ALU_MODE = 2,
+parameter int RAW_ALU_LUT = (ALU_MODE == 0) ? 16'b0110000001101010  // add
+                          : (ALU_MODE == 1) ? 16'b1001000010011010  // sub
+                          : (ALU_MODE == 2) ? 16'b0110000010011010  // addsub
+                          : (ALU_MODE == 3) ? 16'b1001000010011111  // ne
+                          : (ALU_MODE == 4) ? 16'b1001000010011010  // ge
+                          : (ALU_MODE == 5) ? 16'b1001000010011010  // le
+                          : (ALU_MODE == 6) ? 16'b1010000010100000  // cup
+                          : (ALU_MODE == 7) ? 16'b0101000001011111  // cdn
+                          : (ALU_MODE == 8) ? 16'b1010000001011010  // cupcdn
+                          : (ALU_MODE == 9) ? 16'b0111100010001000; // mul/
+
+| LUTx | MUXx  | LUTs | CSLs | CFUs | MUX2_LUT5 | MUX2_LUT6 | MUX2_LUT7 | MUX2_LUT8 |
+|------|-------|------|------|------|-----------|-----------|-----------|-----------|
+| LUT4 | MUX2  | 1    |      |      | 0         | 0         | 0         | 0         |
+| LUT5 | MUX4  | 2    | 1    |      | 1         | 0         | 0         | 0         |
+| LUT6 | MUX8  | 4    | 2    |      | 2         | 1         | 0         | 0         |
+| LUT7 | MUX16 | 8    | 4    | 1    | 4         | 2         | 1         | 0         |
+| LUT8 | MUX32 | 16   | 8    | 2    | 8         | 4         | 2         | 1         |

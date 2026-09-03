@@ -1,0 +1,28 @@
+read_verilog -sv -icells <<EOT
+
+module top #(
+    parameter int unsigned WIDTH = 1,
+    parameter int unsigned S_WIDTH = 2
+)(
+    input  logic [S_WIDTH-1:0] S,
+    input  logic [2**S_WIDTH*WIDTH-1:0] A,
+    output logic [WIDTH-1:0] Y
+);
+
+    \$bmux #(
+        .WIDTH (WIDTH),
+        .S_WIDTH (S_WIDTH)
+    ) uut (
+        .A (A),
+        .S (S),
+        .Y (Y)
+    );
+
+endmodule
+
+EOT
+
+synth_gowin -noiopads -family gw1n
+
+show -stretch
+#synth_gowin -family gw1n -json bmux.json
