@@ -1,0 +1,124 @@
+read_verilog -sv -icells <<EOT
+
+module top #(
+    parameter int unsigned WIDTH = 1,
+    parameter int unsigned S_WIDTH = 5
+)(
+    input  logic [S_WIDTH-1:0] S,
+    input  logic [2**S_WIDTH*WIDTH-1:0] A,
+    output logic [WIDTH-1:0] Y
+);
+
+    \$bmux #(
+        .WIDTH (WIDTH),
+        .S_WIDTH (S_WIDTH)
+    ) uut (
+        .A (A),
+        .S (S),
+        .Y (Y)
+    );
+
+endmodule
+
+//module top #(
+//    parameter int unsigned WIDTH = 5
+//)(
+//    input  logic [WIDTH-1:0] A,
+//    output logic             Y
+//);
+//
+//    \$lut #(
+//        .WIDTH (WIDTH),
+//        .LUT (32'h01234567)
+//    ) uut (
+//        .A (A),
+//        .Y (Y)
+//    );
+//
+//endmodule
+
+EOT
+
+
+## begin ##
+read_verilog -specify -lib +/gowin/cells_sim.v
+#read_verilog -specify -lib +/gowin/cells_cfu.v
+read_verilog -specify -lib +/gowin/cells_xtra_gw1n.v
+hierarchy -check -top top
+
+## coarse ##
+proc
+check
+flatten
+tribuf -logic
+deminout
+opt_expr
+opt_clean
+check
+opt -nodffe -nosdff
+fsm
+opt
+wreduce
+peepopt
+opt_clean
+share
+#techmap -map +/mul2dsp.v [...]    (unless -nodsp and if -family gw1n or gw2a)
+#techmap -map +/gowin/dsp_map.v    (unless -nodsp and if -family gw1n or gw2a)
+alumacc
+opt
+memory -nomap [-no-rw-check]
+opt_clean
+
+## map_ram ##
+#memory_libmap -lib +/gowin/lutrams.txt -lib +/gowin/brams.txt [-no-auto-block] [-no-auto-distributed]    (-no-auto-block if -nobram, -no-auto-distributed if -nolutram)
+#techmap -map +/gowin/lutrams_map.v -map +/gowin/brams_map.v
+
+## map_ffram ##
+opt -fast -mux_undef -undriven -fine
+memory_map
+opt -undriven -fine
+
+## map_gates ##
+show -width -prefix bmux
+techmap -map +/gowin/cells_map.v
+show -width
+techmap -map +/techmap.v -map +/gowin/arith_map.v
+
+opt -fast
+#iopadmap -bits -inpad IBUF O:I -outpad OBUF I:O -toutpad TBUF ~OEN:I:O -tinoutpad IOBUF ~OEN:O:I:IO    (unless -noiopads)
+
+## map_ffs ##
+opt_clean
+dfflegalize -cell $_DFF_?_ 0 -cell $_DFFE_?P_ 0 -cell $_SDFF_?P?_ r -cell $_SDFFE_?P?P_ r -cell $_DFF_?P?_ r -cell $_DFFE_?P?P_ r -cell $_DLATCH_?_ x -cell $_DLATCH_?P?_ x
+techmap -map +/gowin/cells_map.v
+techmap -map +/gowin/cells_latch.v
+opt_expr -mux_undef
+simplemap
+
+## map_luts ##
+sort
+read_verilog -icells -lib -specify +/abc9_model.v
+abc9 -maxlut 8 -W 500
+clean
+stat -width
+
+## map_cells ##
+techmap -map +/gowin/cells_map.v
+opt_lut_ins -tech gowin
+#setundef -undriven -params -zero    (only if -setundef)
+hilomap -singleton -hicell VCC V -locell GND G
+#splitnets -ports    (only if -vout)
+clean
+autoname
+show -width -prefix MUX
+
+## check ##
+hierarchy -check
+stat
+check -noinit
+blackbox =A:whitebox
+
+## vout ##
+#write_verilog -simple-lhs -decimal -attr2comment -defparam -renameprefix gen <file-name>
+#write_json <file-name>
+
