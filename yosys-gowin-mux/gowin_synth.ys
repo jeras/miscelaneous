@@ -2,7 +2,7 @@ read_verilog -sv -icells <<EOT
 
 module top #(
     parameter int unsigned WIDTH = 1,
-    parameter int unsigned S_WIDTH = 5
+    parameter int unsigned S_WIDTH = 3
 )(
     input  logic [S_WIDTH-1:0] S,
     input  logic [2**S_WIDTH*WIDTH-1:0] A,
@@ -41,9 +41,12 @@ EOT
 
 
 ## begin ##
-read_verilog -specify -lib +/gowin/cells_sim.v
+#read_verilog -specify -lib +/gowin/cells_sim.v
+#read_verilog -specify -lib cells_sim.v
+read_verilog -specify -lib cells_sim_widelut.v
 #read_verilog -specify -lib +/gowin/cells_cfu.v
-read_verilog -specify -lib +/gowin/cells_xtra_gw1n.v
+#read_verilog -specify -lib +/gowin/cells_xtra_gw1n.v
+read_verilog -specify -lib cells_xtra_gw1n.v
 hierarchy -check -top top
 
 ## coarse ##
@@ -80,7 +83,8 @@ opt -undriven -fine
 
 ## map_gates ##
 show -width -prefix bmux
-techmap -map +/gowin/cells_map.v
+#techmap -map +/gowin/cells_map.v
+techmap -map cells_map.v
 show -width
 techmap -map +/techmap.v -map +/gowin/arith_map.v
 
@@ -97,10 +101,12 @@ simplemap
 
 ## map_luts ##
 sort
+stat; stat -width
 read_verilog -icells -lib -specify +/abc9_model.v
-abc9 -maxlut 8 -W 500
+#abc9 -maxlut 8 -W 500
+abc9 -maxlut 8 -W 500 -nocleanup -showtmp
 clean
-stat -width
+stat; stat -width
 
 ## map_cells ##
 techmap -map +/gowin/cells_map.v
