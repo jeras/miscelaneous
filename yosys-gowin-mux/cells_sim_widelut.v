@@ -1,3 +1,11 @@
+(* abc9_box, lib_whitebox *)
+module INV (input I, output O);
+	specify
+		(I => O) = ( 555,  902);
+	endspecify
+	assign O = ~I;
+endmodule
+
 (* abc9_lut=1 *)
 module LUT1(output F, input I0);
 	parameter [1:0] INIT = 0;
@@ -69,28 +77,17 @@ module MUX4 (output O, input I0, I1, I2, I3, input S0, S1);
 	wire [3:0] I;
 	wire [1:0] S;
 	specify
-//		(I0 => O) = (1184, 1638);
-//		(I1 => O) = ( 995, 1371);
-//		(I2 => O) = (1184, 1638);
-//		(I3 => O) = ( 995, 1371);
-//
-//		(S0 => O) = ( 808, 1116);
-//		(S1 => O) = ( 486,  680);
+		(I0 => O) = (1184, 1638);
+		(I1 => O) = ( 995, 1371);
+		(I2 => O) = (1184, 1638);
+		(I3 => O) = ( 995, 1371);
 
-		(I0 => O) = (1, 2);
-		(I1 => O) = (1, 2);
-		(I2 => O) = (1, 2);
-		(I3 => O) = (1, 2);
-
-		(S0 => O) = (1, 2);
-		(S1 => O) = (1, 2);
+		(S0 => O) = ( 808, 1116);
+		(S1 => O) = ( 486,  680);
 	endspecify
 	assign I = {I3, I2, I1, I0};
 	assign S = {S1, I0};
-//	assign O = I[S];
-	wire I10 = S0 ? I1 : I0;
-	wire I32 = S0 ? I3 : I2;
-	assign O = S1 ? I32 : I10;
+	assign O = I[S];
 endmodule
 
 (* abc9_lut=4 *)
@@ -242,6 +239,7 @@ module MUX32 (output O, input I0, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11, 
 	assign O = I[S];
 endmodule
 
+(* abc9_box, lib_whitebox *)
 module MUX2_LUT5 (output O, input I0, I1, input S0);
 	specify
 		(I0 => O) = (141, 160);
@@ -251,6 +249,7 @@ module MUX2_LUT5 (output O, input I0, I1, input S0);
   assign O = S0 ? I1 : I0;
 endmodule
 
+(* abc9_box, lib_whitebox *)
 module MUX2_LUT6 (output O, input I0, I1, input S0);
 	specify
 		(I0 => O) = (136, 255);
@@ -260,6 +259,7 @@ module MUX2_LUT6 (output O, input I0, I1, input S0);
   assign O = S0 ? I1 : I0;
 endmodule
 
+(* abc9_box, lib_whitebox *)
 module MUX2_LUT7 (output O, input I0, I1, input S0);
 	specify
 		(I0 => O) = (136, 255);
@@ -269,6 +269,7 @@ module MUX2_LUT7 (output O, input I0, I1, input S0);
   assign O = S0 ? I1 : I0;
 endmodule
 
+(* abc9_box, lib_whitebox *)
 module MUX2_LUT8 (output O, input I0, I1, input S0);
 	specify
 		(I0 => O) = (136, 255);

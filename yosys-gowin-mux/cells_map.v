@@ -130,48 +130,60 @@ module \$lut (A, Y);
 	input [WIDTH-1:0] A;
 	output Y;
 
+	wire [1023:0] _TECHMAP_DO_01_ = "RECURSION; flatten;";
+
+	generate case (WIDTH)
+		1: LUT1 #(.INIT(LUT)) _TECHMAP_REPLACE_ (Y, A[0]);
+		2: LUT2 #(.INIT(LUT)) _TECHMAP_REPLACE_ (Y, A[0], A[1]);
+		3: LUT3 #(.INIT(LUT)) _TECHMAP_REPLACE_ (Y, A[0], A[1], A[2]);
+		4: LUT4 #(.INIT(LUT)) _TECHMAP_REPLACE_ (Y, A[0], A[1], A[2], A[3]);
+		5: LUT5 #(.INIT(LUT)) _TECHMAP_REPLACE_ (Y, A[0], A[1], A[2], A[3], A[4]);
+		6: LUT6 #(.INIT(LUT)) _TECHMAP_REPLACE_ (Y, A[0], A[1], A[2], A[3], A[4], A[5]);
+		7: LUT7 #(.INIT(LUT)) _TECHMAP_REPLACE_ (Y, A[0], A[1], A[2], A[3], A[4], A[5], A[6]);
+		8: LUT8 #(.INIT(LUT)) _TECHMAP_REPLACE_ (Y, A[0], A[1], A[2], A[3], A[4], A[5], A[6], A[7]);
+	endcase endgenerate
+endmodule
+
+module \$bmux (A, S, Y);
+	parameter WIDTH = 0;
+	parameter S_WIDTH = 0;
+
+	input [WIDTH*2**S_WIDTH-1:0] A;
+	input [S_WIDTH-1:0] S;
+	output [WIDTH-1:0] Y;
+
+	wire [1023:0] _TECHMAP_DO_ = "RECURSION; opt;";
+
+	genvar i, j, k;
 	generate
-		if (WIDTH == 1) begin
-			LUT1 #(.INIT(LUT)) _TECHMAP_REPLACE_ (.F(Y),
-				.I0(A[0]));
-		end else
-		if (WIDTH == 2) begin
-			LUT2 #(.INIT(LUT)) _TECHMAP_REPLACE_ (.F(Y),
-				.I0(A[0]), .I1(A[1]));
-		end else
-		if (WIDTH == 3) begin
-			LUT3 #(.INIT(LUT)) _TECHMAP_REPLACE_ (.F(Y),
-				.I0(A[0]), .I1(A[1]), .I2(A[2]));
-		end else
-		if (WIDTH == 4) begin
-			LUT4 #(.INIT(LUT)) _TECHMAP_REPLACE_ (.F(Y),
-				.I0(A[0]), .I1(A[1]), .I2(A[2]), .I3(A[3]));
-		end else
-		if (WIDTH == 5) begin
-			wire f0, f1;
-			\$lut #(.LUT(LUT[15: 0]), .WIDTH(4)) lut0 (.A(A[3:0]), .Y(f0));
-			\$lut #(.LUT(LUT[31:16]), .WIDTH(4)) lut1 (.A(A[3:0]), .Y(f1));
-			MUX2_LUT5 mux5(.I0(f0), .I1(f1), .S0(A[4]), .O(Y));
-		end else
-		if (WIDTH == 6) begin
-			wire f0, f1;
-			\$lut #(.LUT(LUT[31: 0]), .WIDTH(5)) lut0 (.A(A[4:0]), .Y(f0));
-			\$lut #(.LUT(LUT[63:32]), .WIDTH(5)) lut1 (.A(A[4:0]), .Y(f1));
-			MUX2_LUT6 mux6(.I0(f0), .I1(f1), .S0(A[5]), .O(Y));
-		end else
-		if (WIDTH == 7) begin
-			wire f0, f1;
-			\$lut #(.LUT(LUT[63: 0]), .WIDTH(6)) lut0 (.A(A[5:0]), .Y(f0));
-			\$lut #(.LUT(LUT[127:64]), .WIDTH(6)) lut1 (.A(A[5:0]), .Y(f1));
-			MUX2_LUT7 mux7(.I0(f0), .I1(f1), .S0(A[6]), .O(Y));
-		end else
-		if (WIDTH == 8) begin
-			wire f0, f1;
-			\$lut #(.LUT(LUT[127: 0]), .WIDTH(7)) lut0 (.A(A[6:0]), .Y(f0));
-			\$lut #(.LUT(LUT[255:128]), .WIDTH(7)) lut1 (.A(A[6:0]), .Y(f1));
-			MUX2_LUT8 mux8(.I0(f0), .I1(f1), .S0(A[7]), .O(Y));
-		end else begin
-			wire _TECHMAP_FAIL_ = 1;
+		for (i=0; i<WIDTH; i++) begin: index
+			wire [2**S_WIDTH-1:0] AA;
+
+			for (j=0; j<2**S_WIDTH; j++) begin: bitmap
+				assign AA[j] = A[i+j*WIDTH];
+			end
+
+			case (S_WIDTH)
+				1: MUX2  _TECHMAP_REPLACE_ (Y[i], AA[ 0], AA[ 1],                                                 S[0]);
+				2: MUX4  _TECHMAP_REPLACE_ (Y[i], AA[ 0], AA[ 1], AA[ 2], AA[ 3],                                 S[0], S[1]);
+				3: MUX8  _TECHMAP_REPLACE_ (Y[i], AA[ 0], AA[ 1], AA[ 2], AA[ 3], AA[ 4], AA[ 5], AA[ 6], AA[ 7], S[0], S[1], S[2]);
+				4: MUX16 _TECHMAP_REPLACE_ (Y[i], AA[ 0], AA[ 1], AA[ 2], AA[ 3], AA[ 4], AA[ 5], AA[ 6], AA[ 7],
+				                                  AA[ 8], AA[ 9], AA[10], AA[11], AA[12], AA[13], AA[14], AA[15], S[0], S[1], S[2], S[3]);
+				5: MUX32 _TECHMAP_REPLACE_ (Y[i], AA[ 0], AA[ 1], AA[ 2], AA[ 3], AA[ 4], AA[ 5], AA[ 6], AA[ 7],
+				                                  AA[ 8], AA[ 9], AA[10], AA[11], AA[12], AA[13], AA[14], AA[15],
+												  AA[16], AA[17], AA[18], AA[19], AA[20], AA[21], AA[22], AA[23],
+				                                  AA[24], AA[25], AA[26], AA[27], AA[28], AA[29], AA[30], AA[31], S[0], S[1], S[2], S[3], S[4]);
+				default: begin
+					// TODO: causes segmentation fault
+					wire [2**(S_WIDTH-5):0] YY;
+
+					for (k=0; k<2**(S_WIDTH-5); k++) begin: segment
+						\$bmux #(.WIDTH(1), .S_WIDTH(5)) mux (.A(AA[k*2**5+:2**5]), .S(S[4:0]), .Y(YY[k]));
+					end
+
+					\$bmux #(.WIDTH(1), .S_WIDTH(S_WIDTH-5)) mux (.A(YY), .S(S[S_WIDTH-1:5]), .Y(Y[i]));
+				end
+			endcase
 		end
 	endgenerate
 endmodule
