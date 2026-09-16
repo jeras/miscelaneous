@@ -144,6 +144,26 @@ module \$lut (A, Y);
 	endcase endgenerate
 endmodule
 
+module \$_MUX_ (input A, B, input S, output Y);
+	MUX2 _TECHMAP_REPLACE_ (Y, A, B, S);
+endmodule
+
+module \$_MUX4_ (input A, B, C, D, input S, T, output Y);
+	MUX4 _TECHMAP_REPLACE_ (Y, A, B, C, D, S, T);
+endmodule
+
+module \$_MUX8_ (input A, B, C, D, E, F, G, H, input S, T, U, output Y);
+	MUX8  _TECHMAP_REPLACE_ (Y, A, B, C, D, E, F, G, H, S, T, U);
+endmodule
+
+module \$_MUX16_ (input A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, input S, T, U, V, output Y);
+	MUX16 _TECHMAP_REPLACE_ (Y, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, S, T, U, V);
+endmodule
+
+//module \$_MUX32_ (input A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, input S, T, U, V, output Y);
+//	MUX32 _TECHMAP_REPLACE_ (Y, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, S, T, U, V);
+//endmodule
+
 module \$bmux (A, S, Y);
 	parameter WIDTH = 0;
 	parameter S_WIDTH = 0;

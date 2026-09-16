@@ -99,12 +99,20 @@ techmap -map +/gowin/cells_latch.v
 opt_expr -mux_undef
 simplemap
 
+## map_mux ##
+stat; stat -width
+muxcover
+stat; stat -width
+techmap -map cells_map.v
+show -width -prefix muxcover
+
 ## map_luts ##
 sort
+show -width -prefix sort
 stat; stat -width
 read_verilog -icells -lib -specify +/abc9_model.v
 #abc9 -maxlut 8 -W 500
-abc9 -maxlut 8 -W 2000 -nocleanup -showtmp
+abc9 -maxlut 8 -W 500 -nocleanup -showtmp
 clean
 stat; stat -width
 

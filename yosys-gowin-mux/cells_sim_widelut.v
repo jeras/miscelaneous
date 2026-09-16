@@ -22,7 +22,7 @@ module LUT2(output F, input I0, I1);
 		(I0 => F) = ( 867, 1184);
 		(I1 => F) = ( 555,  902);
 	endspecify
-	assign F = INIT[{I1,I0}];
+	assign F = INIT[{I1, I0}];
 endmodule
 
 (* abc9_lut=1 *)
@@ -33,7 +33,7 @@ module LUT3(output F, input I0, I1, I2);
 		(I1 => F) = ( 867, 1184);
 		(I2 => F) = ( 555,  902);
 	endspecify
-	assign F = INIT[{I2,I1,I0}];
+	assign F = INIT[{I2, I1, I0}];
 endmodule
 
 (* abc9_lut=1 *)
@@ -45,7 +45,7 @@ module LUT4(output F, input I0, I1, I2, I3);
 		(I2 => F) = ( 867, 1184);
 		(I3 => F) = ( 555,  902);
 	endspecify
-	assign F = INIT[{I3,I2,I1,I0}];
+	assign F = INIT[{I3, I2, I1, I0}];
 endmodule
 
 (* abc9_box, lib_whitebox *)
@@ -69,13 +69,13 @@ module LUT5(output F, input I0, I1, I2, I3, I4);
 		(I3 => F) = ( 808, 1116);
 		(I4 => F) = ( 486,  680);
 	endspecify
-	assign F = INIT[{I4,I3,I2,I1,I0}];
+	assign F = INIT[{I4, I3, I2, I1, I0}];
 endmodule
 
 (* abc9_box, lib_whitebox *)
 module MUX4 (output O, input I0, I1, I2, I3, input S0, S1);
-	wire [3:0] I;
-	wire [1:0] S;
+//	wire [3:0] I;
+//	wire [1:0] S;
 	specify
 		(I0 => O) = (1184, 1638);
 		(I1 => O) = ( 995, 1371);
@@ -85,9 +85,12 @@ module MUX4 (output O, input I0, I1, I2, I3, input S0, S1);
 		(S0 => O) = ( 808, 1116);
 		(S1 => O) = ( 486,  680);
 	endspecify
-	assign I = {I3, I2, I1, I0};
-	assign S = {S1, I0};
-	assign O = I[S];
+//	assign I = {I3, I2, I1, I0};
+//	assign S = {S1, I0};
+//	assign O = I[S];
+	wire I10 = S0 ? I1 : I0;
+	wire I32 = S0 ? I3 : I2;
+	assign O = S1 ? I32 : I10;
 endmodule
 
 (* abc9_lut=4 *)
@@ -101,7 +104,7 @@ module LUT6(output F, input I0, I1, I2, I3, I4, I5);
 		(I4 => F) = ( 486 + 136,  680 + 255);
 		(I5 => F) = ( 478      ,  723      );
 	endspecify
-	assign F = INIT[{I5,I4,I3,I2,I1,I0}];
+	assign F = INIT[{I5, I4, I3, I2, I1, I0}];
 endmodule
 
 (* abc9_box, lib_whitebox *)
@@ -139,7 +142,7 @@ module LUT7(output F, input I0, I1, I2, I3, I4, I5, I6);
 		(I5 => F) = ( 478 + 136      ,  723 + 255      );
 		(I6 => F) = ( 478            ,  723            );
 	endspecify
-	assign F = INIT[{I6,I5,I4,I3,I2,I1,I0}];
+	assign F = INIT[{I6, I5, I4, I3, I2, I1, I0}];
 endmodule
 
 (* abc9_box, lib_whitebox *)
@@ -187,7 +190,7 @@ module LUT8(output F, input I0, I1, I2, I3, I4, I5, I6, I7);
 		(I6 => F) = ( 478 + 136            ,  723 + 255            );
 		(I7 => F) = ( 478                  ,  723                  );
 	endspecify
-	assign F = INIT[{I7,I6,I5,I4,I3,I2,I1,I0}];
+	assign F = INIT[{I7, I6, I5, I4, I3, I2, I1, I0}];
 endmodule
 
 (* abc9_box, lib_whitebox *)
