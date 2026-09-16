@@ -61,7 +61,7 @@ module MUX2_MUX16 (output O, input I0, I1, input S0);
 	MUX2_LUT7 mux2_lut7 (.O(O), .I0(I0), .I1(I1), .S0(S0));
 endmodule
 
-module MUX2_LUT32 (output O, input I0, I1, input S0);
+module MUX2_MUX32 (output O, input I0, I1, input S0);
 	MUX2_LUT8 mux2_lut8 (.O(O), .I0(I0), .I1(I1), .S0(S0));
 endmodule
 
