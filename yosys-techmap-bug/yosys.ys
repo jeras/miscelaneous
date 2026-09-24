@@ -1,0 +1,11 @@
+read_verilog -sv -icells <<EOT
+
+module top (input A, B, input S, output Y);
+//    \$_MUX_ (.A(A), .B(B), .S(S), .Y(Y));
+    \$bmux #(.WIDTH (1), .S_WIDTH (1)) uut (.A ({B, A}), .S (S), .Y (Y));
+endmodule
+
+EOT
+
+simplemap
+techmap -map map.v
