@@ -130,39 +130,38 @@ module \$lut (A, Y);
 	input [WIDTH-1:0] A;
 	output Y;
 
-	wire [1023:0] _TECHMAP_DO_01_ = "RECURSION; flatten;";
-
 	generate case (WIDTH)
-		1: LUT1 #(.INIT(LUT)) _TECHMAP_REPLACE_ (Y, A[0]);
-		2: LUT2 #(.INIT(LUT)) _TECHMAP_REPLACE_ (Y, A[0], A[1]);
-		3: LUT3 #(.INIT(LUT)) _TECHMAP_REPLACE_ (Y, A[0], A[1], A[2]);
-		4: LUT4 #(.INIT(LUT)) _TECHMAP_REPLACE_ (Y, A[0], A[1], A[2], A[3]);
-		5: LUT5 #(.INIT(LUT)) _TECHMAP_REPLACE_ (Y, A[0], A[1], A[2], A[3], A[4]);
-		6: LUT6 #(.INIT(LUT)) _TECHMAP_REPLACE_ (Y, A[0], A[1], A[2], A[3], A[4], A[5]);
-		7: LUT7 #(.INIT(LUT)) _TECHMAP_REPLACE_ (Y, A[0], A[1], A[2], A[3], A[4], A[5], A[6]);
-		8: LUT8 #(.INIT(LUT)) _TECHMAP_REPLACE_ (Y, A[0], A[1], A[2], A[3], A[4], A[5], A[6], A[7]);
+		1: LUT1 #(.INIT(LUT)) _TECHMAP_REPLACE_ (.F(Y), .I0(A[0]));
+		2: LUT2 #(.INIT(LUT)) _TECHMAP_REPLACE_ (.F(Y), .I0(A[0]), .I1(A[1]));
+		3: LUT3 #(.INIT(LUT)) _TECHMAP_REPLACE_ (.F(Y), .I0(A[0]), .I1(A[1]), .I2(A[2]));
+		4: LUT4 #(.INIT(LUT)) _TECHMAP_REPLACE_ (.F(Y), .I0(A[0]), .I1(A[1]), .I2(A[2]), .I3(A[3]));
+		5: LUT5 #(.INIT(LUT)) _TECHMAP_REPLACE_ (.F(Y), .I0(A[0]), .I1(A[1]), .I2(A[2]), .I3(A[3]), .I4(A[4]));
+		6: LUT6 #(.INIT(LUT)) _TECHMAP_REPLACE_ (.F(Y), .I0(A[0]), .I1(A[1]), .I2(A[2]), .I3(A[3]), .I4(A[4]), .I5(A[5]));
+		7: LUT7 #(.INIT(LUT)) _TECHMAP_REPLACE_ (.F(Y), .I0(A[0]), .I1(A[1]), .I2(A[2]), .I3(A[3]), .I4(A[4]), .I5(A[5]), .I6(A[6]));
+		8: LUT8 #(.INIT(LUT)) _TECHMAP_REPLACE_ (.F(Y), .I0(A[0]), .I1(A[1]), .I2(A[2]), .I3(A[3]), .I4(A[4]), .I5(A[5]), .I6(A[6]), .I7(A[7]));
 	endcase endgenerate
 endmodule
 
 module \$_MUX_ (input A, B, input S, output Y);
-	MUX2 _TECHMAP_REPLACE_ (Y, A, B, S);
+	MUX2 _TECHMAP_REPLACE_ (.O(Y), .I0(A), .I1(B), .S0(S));
 endmodule
 
 module \$_MUX4_ (input A, B, C, D, input S, T, output Y);
-	MUX4 _TECHMAP_REPLACE_ (Y, A, B, C, D, S, T);
+	MUX4 _TECHMAP_REPLACE_ (.O(Y), .I0(A), .I1(B), .I2(C), .I3(D), .S0(S), .S1(T));
 endmodule
 
 module \$_MUX8_ (input A, B, C, D, E, F, G, H, input S, T, U, output Y);
-	MUX8  _TECHMAP_REPLACE_ (Y, A, B, C, D, E, F, G, H, S, T, U);
+	MUX8  _TECHMAP_REPLACE_ (.O(Y), .I0(A), .I1(B), .I2(C), .I3(D), .I4(E), .I5(F), .I6(G), .I7(H), .S0(S), .S1(T), .S2(U));
 endmodule
 
 module \$_MUX16_ (input A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, input S, T, U, V, output Y);
-	MUX16 _TECHMAP_REPLACE_ (Y, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, S, T, U, V);
+	MUX16 _TECHMAP_REPLACE_ (.O(Y), .I0(A), .I1(B), .I2(C), .I3(D), .I4(E), .I5(F), .I6(G), .I7(H), .I8(I), .I9(J), .I10(K), .I11(L), .I12(M), .I13(N), .I14(O), .I15(P), .S0(S), .S1(T), .S2(U), .S3(V));
 endmodule
 
-//module \$_MUX32_ (input A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, input S, T, U, V, output Y);
-//	MUX32 _TECHMAP_REPLACE_ (Y, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, S, T, U, V);
-//endmodule
+module \$_MUX32_ (input A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, QA, QB, QC, QD, QE, QF, QG, QH, QI, QJ, QK, QL, QM, QN, QO, QP, input S, T, U, V, W, output Y);
+	MUX32 _TECHMAP_REPLACE_ (.O(Y), .I0( A), .I1( B), .I2( C), .I3( D), .I4( E), .I5( F), .I6( G), .I7( H), .I8( I), .I9( J), .I10( K), .I11( L), .I12( M), .I13( N), .I14( O), .I15( P),
+	                                .I0(QA), .I1(QB), .I2(QC), .I3(QD), .I4(QE), .I5(QF), .I6(QG), .I7(QH), .I8(QI), .I9(QJ), .I10(QK), .I11(QL), .I12(QM), .I13(QN), .I14(QO), .I15(QP), .S0(S), .S1(T), .S2(U), .S3(U), .S3(V), .S4(W));
+endmodule
 
 module \$bmux (A, S, Y);
 	parameter WIDTH = 0;
@@ -171,8 +170,6 @@ module \$bmux (A, S, Y);
 	input [WIDTH*2**S_WIDTH-1:0] A;
 	input [S_WIDTH-1:0] S;
 	output [WIDTH-1:0] Y;
-
-	wire [1023:0] _TECHMAP_DO_ = "RECURSION; opt;";
 
 	genvar i, j, k;
 	generate
@@ -184,15 +181,15 @@ module \$bmux (A, S, Y);
 			end
 
 			case (S_WIDTH)
-				1: MUX2  _TECHMAP_REPLACE_ (Y[i], AA[ 0], AA[ 1],                                                 S[0]);
-				2: MUX4  _TECHMAP_REPLACE_ (Y[i], AA[ 0], AA[ 1], AA[ 2], AA[ 3],                                 S[0], S[1]);
-				3: MUX8  _TECHMAP_REPLACE_ (Y[i], AA[ 0], AA[ 1], AA[ 2], AA[ 3], AA[ 4], AA[ 5], AA[ 6], AA[ 7], S[0], S[1], S[2]);
-				4: MUX16 _TECHMAP_REPLACE_ (Y[i], AA[ 0], AA[ 1], AA[ 2], AA[ 3], AA[ 4], AA[ 5], AA[ 6], AA[ 7],
-				                                  AA[ 8], AA[ 9], AA[10], AA[11], AA[12], AA[13], AA[14], AA[15], S[0], S[1], S[2], S[3]);
-				5: MUX32 _TECHMAP_REPLACE_ (Y[i], AA[ 0], AA[ 1], AA[ 2], AA[ 3], AA[ 4], AA[ 5], AA[ 6], AA[ 7],
-				                                  AA[ 8], AA[ 9], AA[10], AA[11], AA[12], AA[13], AA[14], AA[15],
-												  AA[16], AA[17], AA[18], AA[19], AA[20], AA[21], AA[22], AA[23],
-				                                  AA[24], AA[25], AA[26], AA[27], AA[28], AA[29], AA[30], AA[31], S[0], S[1], S[2], S[3], S[4]);
+				1: MUX2  _TECHMAP_REPLACE_ (.O(Y[i]), .I0 (AA[ 0]), .I1 (AA[ 1]),                                                                                     .S0(S[0]));
+				2: MUX4  _TECHMAP_REPLACE_ (.O(Y[i]), .I0 (AA[ 0]), .I1 (AA[ 1]), .I2 (AA[ 2]), .I3 (AA[ 3]),                                                         .S0(S[0]), .S1(S[1]));
+				3: MUX8  _TECHMAP_REPLACE_ (.O(Y[i]), .I0 (AA[ 0]), .I1 (AA[ 1]), .I2 (AA[ 2]), .I3 (AA[ 3]), .I4 (AA[ 4]), .I5 (AA[ 5]), .I6 (AA[ 6]), .I7 (AA[ 7]), .S0(S[0]), .S1(S[1]), .S2(S[2]));
+				4: MUX16 _TECHMAP_REPLACE_ (.O(Y[i]), .I0 (AA[ 0]), .I1 (AA[ 1]), .I2 (AA[ 2]), .I3 (AA[ 3]), .I4 (AA[ 4]), .I5 (AA[ 5]), .I6 (AA[ 6]), .I7 (AA[ 7]),
+				                                      .I8 (AA[ 8]), .I9 (AA[ 9]), .I10(AA[10]), .I11(AA[11]), .I12(AA[12]), .I13(AA[13]), .I14(AA[14]), .I15(AA[15]), .S0(S[0]), .S1(S[1]), .S2(S[2]), .S3(S[3]));
+				5: MUX32 _TECHMAP_REPLACE_ (.O(Y[i]), .I0 (AA[ 0]), .I1 (AA[ 1]), .I2 (AA[ 2]), .I3 (AA[ 3]), .I4 (AA[ 4]), .I5 (AA[ 5]), .I6 (AA[ 6]), .I7 (AA[ 7]),
+				                                      .I8 (AA[ 8]), .I9 (AA[ 9]), .I10(AA[10]), .I11(AA[11]), .I12(AA[12]), .I13(AA[13]), .I14(AA[14]), .I15(AA[15]),
+												      .I16(AA[16]), .I17(AA[17]), .I18(AA[18]), .I19(AA[19]), .I20(AA[20]), .I21(AA[21]), .I22(AA[22]), .I23(AA[23]),
+				                                      .I24(AA[24]), .I25(AA[25]), .I26(AA[26]), .I27(AA[27]), .I28(AA[28]), .I29(AA[29]), .I30(AA[30]), .I31(AA[31]), .S0(S[0]), .S1(S[1]), .S2(S[2]), .S3(S[3]), .S4(S[4]));
 				default: begin
 					// TODO: causes segmentation fault
 					wire [2**(S_WIDTH-5):0] YY;

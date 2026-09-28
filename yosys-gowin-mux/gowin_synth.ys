@@ -1,53 +1,71 @@
-read_verilog -sv -icells <<EOT
+#read_verilog -sv -icells <<EOT
+#
+#module top #(
+#    parameter int unsigned WIDTH = 1,
+#    parameter int unsigned S_WIDTH = 2
+#)(
+#    input  logic [S_WIDTH-1:0] S,
+#    input  logic [2**S_WIDTH*WIDTH-1:0] A,
+#    output logic [WIDTH-1:0] Y
+#);
+#
+#    \$bmux #(
+#        .WIDTH (WIDTH),
+#        .S_WIDTH (S_WIDTH)
+#    ) uut (
+#        .A (A),
+#        .S (S),
+#        .Y (Y)
+#    );
+#
+#endmodule
+#
+#//module top #(
+#//    parameter int unsigned WIDTH = 5
+#//)(
+#//    input  logic [WIDTH-1:0] A,
+#//    output logic             Y
+#//);
+#//
+#//    \$lut #(
+#//        .WIDTH (WIDTH),
+#//        .LUT (32'h01234567)
+#//    ) uut (
+#//        .A (A),
+#//        .Y (Y)
+#//    );
+#//
+#//endmodule
+#
+#EOT
 
-module top #(
-    parameter int unsigned WIDTH = 1,
-    parameter int unsigned S_WIDTH = 2
-)(
-    input  logic [S_WIDTH-1:0] S,
-    input  logic [2**S_WIDTH*WIDTH-1:0] A,
-    output logic [WIDTH-1:0] Y
-);
+read_verilog -sv -icells case_bmux.sv
 
-    \$bmux #(
-        .WIDTH (WIDTH),
-        .S_WIDTH (S_WIDTH)
-    ) uut (
-        .A (A),
-        .S (S),
-        .Y (Y)
-    );
+proc_clean
+proc_rmdead
+proc_prune
+proc_init
+proc_arst
+proc_rom
+proc_mux
+proc_dlatch
+proc_dff
+proc_memwr
+proc_clean
+#opt_expr -keepdc
 
-endmodule
-
-//module top #(
-//    parameter int unsigned WIDTH = 5
-//)(
-//    input  logic [WIDTH-1:0] A,
-//    output logic             Y
-//);
-//
-//    \$lut #(
-//        .WIDTH (WIDTH),
-//        .LUT (32'h01234567)
-//    ) uut (
-//        .A (A),
-//        .Y (Y)
-//    );
-//
-//endmodule
-
-EOT
+show -width -prefix parse; exit
 
 
 ## begin ##
-#read_verilog -specify -lib +/gowin/cells_sim.v
+read_verilog -specify -lib +/gowin/cells_sim.v
 #read_verilog -specify -lib cells_sim.v
-read_verilog -specify -lib cells_sim_widelut.v
+#read_verilog -specify -lib cells_sim_widelut.v
 #read_verilog -specify -lib +/gowin/cells_cfu.v
-#read_verilog -specify -lib +/gowin/cells_xtra_gw1n.v
+read_verilog -specify -lib +/gowin/cells_xtra_gw1n.v
 #read_verilog -specify -lib cells_xtra_gw1n.v
 hierarchy -check -top top
+
 
 ## coarse ##
 proc
@@ -94,8 +112,8 @@ opt -fast
 ## map_ffs ##
 opt_clean
 dfflegalize -cell $_DFF_?_ 0 -cell $_DFFE_?P_ 0 -cell $_SDFF_?P?_ r -cell $_SDFFE_?P?P_ r -cell $_DFF_?P?_ r -cell $_DFFE_?P?P_ r -cell $_DLATCH_?_ x -cell $_DLATCH_?P?_ x
-techmap -map +/gowin/cells_map.v
-techmap -map +/gowin/cells_latch.v
+techmap -map +/gowin/dff_map.v
+techmap -map +/gowin/latch_map.v
 opt_expr -mux_undef
 simplemap
 
@@ -103,7 +121,7 @@ simplemap
 stat; stat -width
 muxcover
 stat; stat -width
-techmap -map cells_map.v
+techmap -map +/gowin/mux_map.v
 show -width -prefix muxcover
 
 ## map_luts ##
@@ -117,7 +135,7 @@ clean
 stat; stat -width
 
 ## map_cells ##
-techmap -map +/gowin/cells_map.v
+techmap -map +/gowin/lut_map.v
 opt_lut_ins -tech gowin
 #setundef -undriven -params -zero    (only if -setundef)
 hilomap -singleton -hicell VCC V -locell GND G

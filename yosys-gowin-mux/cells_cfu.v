@@ -49,7 +49,7 @@ endmodule
 
 // MUX2_LUT* are P&R primitives defined elsewhere
 
-module MUX2_MUX4 (input I0, I1, input S0, output O);
+module MUX2_MUX4 (output O, input I0, I1, input S0);
 	MUX2_LUT5 mux2_lut5 (.O(O), .I0(I0), .I1(I1), .S0(S0));
 endmodule
 

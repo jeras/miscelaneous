@@ -1,4 +1,4 @@
-(* abc9_box, lib_whitebox *)
+(* abc9_box, lib_blackbox *)
 module INV (input I, output O);
 	specify
 		(I => O) = ( 555,  902);
@@ -48,7 +48,7 @@ module LUT4(output F, input I0, I1, I2, I3);
 	assign F = INIT[{I3, I2, I1, I0}];
 endmodule
 
-(* abc9_box, lib_whitebox *)
+(* abc9_box, lib_blackbox *)
 module MUX2 (output O, input I0, I1, input S0);
 	specify
 		(I0 => O) = (1053, 1583);
@@ -72,7 +72,7 @@ module LUT5(output F, input I0, I1, I2, I3, I4);
 	assign F = INIT[{I4, I3, I2, I1, I0}];
 endmodule
 
-(* abc9_box, lib_whitebox *)
+(* abc9_box, lib_blackbox *)
 module MUX4 (output O, input I0, I1, I2, I3, input S0, S1);
 //	wire [3:0] I;
 //	wire [1:0] S;
@@ -107,7 +107,7 @@ module LUT6(output F, input I0, I1, I2, I3, I4, I5);
 	assign F = INIT[{I5, I4, I3, I2, I1, I0}];
 endmodule
 
-(* abc9_box, lib_whitebox *)
+(* abc9_box, lib_blackbox *)
 module MUX8 (output O, input I0, I1, I2, I3, I4, I5, I6, I7, input S0, S1, S2);
 	wire [7:0] I;
 	wire [2:0] S;
@@ -145,7 +145,7 @@ module LUT7(output F, input I0, I1, I2, I3, I4, I5, I6);
 	assign F = INIT[{I6, I5, I4, I3, I2, I1, I0}];
 endmodule
 
-(* abc9_box, lib_whitebox *)
+(* abc9_box, lib_blackbox *)
 module MUX16 (output O, input I0, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11, I12, I13, I14, I15, input S0, S1, S2, S3);
 	wire [15:0] I;
 	wire [3:0] S;
@@ -193,7 +193,7 @@ module LUT8(output F, input I0, I1, I2, I3, I4, I5, I6, I7);
 	assign F = INIT[{I7, I6, I5, I4, I3, I2, I1, I0}];
 endmodule
 
-(* abc9_box, lib_whitebox *)
+(* abc9_box, lib_blackbox *)
 module MUX32 (output O, input I0, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11, I12, I13, I14, I15, I16, I17, I18, I19, I20, I21, I22, I23, I24, I25, I26, I27, I28, I29, I30, I31, input S0, S1, S2, S3, S4);
 	wire [31:0] I;
 	wire [4:0] S;
@@ -242,7 +242,7 @@ module MUX32 (output O, input I0, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11, 
 	assign O = I[S];
 endmodule
 
-(* abc9_box, lib_whitebox *)
+(* abc9_box, lib_blackbox *)
 module MUX2_LUT5 (output O, input I0, I1, input S0);
 	specify
 		(I0 => O) = (141, 160);
@@ -252,7 +252,7 @@ module MUX2_LUT5 (output O, input I0, I1, input S0);
   assign O = S0 ? I1 : I0;
 endmodule
 
-(* abc9_box, lib_whitebox *)
+(* abc9_box, lib_blackbox *)
 module MUX2_LUT6 (output O, input I0, I1, input S0);
 	specify
 		(I0 => O) = (136, 255);
@@ -262,7 +262,7 @@ module MUX2_LUT6 (output O, input I0, I1, input S0);
   assign O = S0 ? I1 : I0;
 endmodule
 
-(* abc9_box, lib_whitebox *)
+(* abc9_box, lib_blackbox *)
 module MUX2_LUT7 (output O, input I0, I1, input S0);
 	specify
 		(I0 => O) = (136, 255);
@@ -272,7 +272,7 @@ module MUX2_LUT7 (output O, input I0, I1, input S0);
   assign O = S0 ? I1 : I0;
 endmodule
 
-(* abc9_box, lib_whitebox *)
+(* abc9_box, lib_blackbox *)
 module MUX2_LUT8 (output O, input I0, I1, input S0);
 	specify
 		(I0 => O) = (136, 255);
