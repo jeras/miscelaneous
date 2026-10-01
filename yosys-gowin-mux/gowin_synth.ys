@@ -39,7 +39,9 @@
 #
 #EOT
 
-read_verilog -sv -icells case_bmux.sv
+#read_verilog -sv -icells case_bmux.sv
+#read_verilog -sv -icells case_unique.sv
+read_verilog -sv -icells case_priority.sv
 
 proc_clean
 proc_rmdead
@@ -54,7 +56,7 @@ proc_memwr
 proc_clean
 #opt_expr -keepdc
 
-show -width -prefix parse; exit
+show -width -prefix parse
 
 
 ## begin ##
@@ -89,6 +91,17 @@ alumacc
 opt
 memory -nomap [-no-rw-check]
 opt_clean
+
+show -width -prefix coarse
+muxpack
+show -width -prefix muxpack
+pmuxtree
+show -width -prefix pmuxtree;
+synth
+show -width -prefix synth; exit
+synth
+
+
 
 ## map_ram ##
 #memory_libmap -lib +/gowin/lutrams.txt -lib +/gowin/brams.txt [-no-auto-block] [-no-auto-distributed]    (-no-auto-block if -nobram, -no-auto-distributed if -nolutram)
